@@ -1,5 +1,12 @@
 # CS 260 Notes
+Startup Brainstorm:
+Generational Mapping tool like Family Search
+
+
 this is me editing my notes page, I am invited to write what I learned. I already know a lot about git, but I was very interested by heading syntax given in [this page](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+
+
+
 [My startup - Simon](https://simon.cs260.click)
 
 ## Helpful links
