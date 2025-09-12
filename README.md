@@ -1,4 +1,4 @@
-# Generation Keeper -- Voices From the Dust
+# Lines of Light
 
 [My Notes](notes.md)
 
