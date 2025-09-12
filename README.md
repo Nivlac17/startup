@@ -36,13 +36,14 @@ Art has inspired humans for countless generations. From the first cave drawings 
 
 Here is a sequence diagram that shows how to people would interact with the backend to draw.
 
-
-<!-- ```mermaid
+<!-- 
+```mermaid
 sequenceDiagram
     actor You
     actor Website
     You->>Website: Replace this with your design
 ``` -->
+```mermaid
 sequenceDiagram
     actor Alice
     actor Juan
@@ -53,6 +54,8 @@ sequenceDiagram
     Juan->>Server: Alice + 1
     Server -->>Bud: Alice + 1
     Server -->>Alice: Alice + 1
+```
+
 
 ### Key features
 
