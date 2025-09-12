@@ -27,14 +27,15 @@ Art has inspired humans for countless generations. From the first cave drawings 
 
 ### Design
 
-### Log-in Page
+#### Log-in Page
 ![Design image](SignInPage.png)
-#### Select Artist Page
+#### Navigation Page
 ![Design image](SelectArtPage.png)
 #### Drawing Page
 ![Design image](DrawArtPage.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Here is a sequence diagram that shows how to people would interact with the backend to draw.
+
 
 <!-- ```mermaid
 sequenceDiagram
@@ -42,6 +43,16 @@ sequenceDiagram
     actor Website
     You->>Website: Replace this with your design
 ``` -->
+sequenceDiagram
+    actor Alice
+    actor Juan
+    actor Bud
+    Alice->>Server: Bud + 1
+    Server -->>Juan: Bud + 1
+    Server -->>Bud: Bud + 1
+    Juan->>Server: Alice + 1
+    Server -->>Bud: Alice + 1
+    Server -->>Alice: Alice + 1
 
 ### Key features
 
