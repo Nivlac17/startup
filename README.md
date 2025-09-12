@@ -52,12 +52,16 @@ sequenceDiagram
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Uses correct HTML structure for application. Three HTML pages. One for login, one for selecting a picture, and one for drawing or watching someone draw.
+- **CSS** - Application styling that looks good on different screen sizes, uses good whitespace, color choice and contrast.
+- **React** - Provides login, display of different pictures to view, drawing tools, display other users art, and use of React for routing and components.
+- **Service** - Backend service with endpoints for:
+Login
+Saving grid data
+Loading grid data
+- **DB/Login** - MongoDB to store users and their artwork. Secure login system with hashed credentials.
+- **WebSocket** - As a user colors the grid, updates are broadcast to all other connected users in real time. A chat feature included for users to comment on an artist work.
+
 
 ## 🚀 AWS deliverable
 
