@@ -36,24 +36,27 @@ Art has inspired humans for countless generations. From the first cave drawings 
 
 Here is a sequence diagram that shows how to people would interact with the backend to draw.
 
-<!-- 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-``` -->
 ```mermaid
 sequenceDiagram
     actor Alice
     actor Juan
     actor Bud
-    Alice->>Server: Bud + 1
-    Server -->>Juan: Bud + 1
-    Server -->>Bud: Bud + 1
-    Juan->>Server: Alice + 1
-    Server -->>Bud: Alice + 1
-    Server -->>Alice: Alice + 1
+    participant Server
+
+    Alice->>Server: Paints a square on the grid
+    Server-->>Alice: Confirm change
+    Server-->>Juan: Update grid with Alice's change
+    Server-->>Bud: Update grid with Alice's change
+
+    Juan->>Server: Paints a square on the grid
+    Server-->>Juan: Confirm change
+    Server-->>Alice: Update grid with Juan's change
+    Server-->>Bud: Update grid with Juan's change
+
+    Bud->>Server: Sends chat message
+    Server-->>Alice: Display Bud's chat message
+    Server-->>Juan: Display Bud's chat message
+
 ```
 
 
