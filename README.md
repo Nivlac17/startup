@@ -26,7 +26,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 Art has inspired humans for countless generations. From the first cave drawings to today’s modern photography, pictures, paintings, and sculptures have shaped the way we think and feel. **Lines of Light** brings that same creative spirit into a simple, accessible digital tool. Using just a grid and a color palette, anyone can create pixel art, doodles, or even play Pictionary with friends on their phone or computer.
 
 ### Design
-#### Log-in Page
+
+### Log-in Page
 ![Design image](SignInPage.png)
 #### Select Artist Page
 ![Design image](SelectArtPage.png)
