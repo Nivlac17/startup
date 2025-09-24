@@ -1,5 +1,19 @@
 # CS 260 Notes
-Scriptureal Generations Mapping Tool Family Search for the scriptrues.
+
+HTML code for a box with label and buttons in it
+<div style="border:2px solid #000; padding:12px; margin-bottom:10px; max-width:400px;">
+            User
+            <button type="submit">Art Title</button>
+            <button type="submit">Art Title</button>
+            <button type="submit">Art Title</button>
+            <button type="submit">Art Title</button>
+</div>
+
+HTML code for adding an image
+ <div>
+  <h4>Beutiful Sunset</h4>
+    <img src="../sunset.jpeg" alt="Sunset" width="200">
+</div>
 
 
 this is me editing my notes page, I am invited to write what I learned. I already know a lot about git, but I was very interested by heading syntax given in [this page](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
