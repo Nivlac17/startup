@@ -94,15 +94,14 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I created 3 HTML pages.
+- [ ] **HTML pages** - I created 3 HTML pages that represent the ability to login, select art to view, and a page to draw and view another person drawing.
 - [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [ ] **Links** - The login page automatically links to the art selection page. The the art selection buttons link to the drawing page.
+- [ ] **Text** - Each of the art piece is represented by a textual description. The chat feature also shows possible chat info.
+- [ ] **Images** - I added a picture as the tab icon; I also added images for featured art place holders.
+- [ ] **Login placeholder** - Input box and submit button for login.
+- [ ] **DB data placeholder** - A place holder to find other user's artwork in db.
+- [ ] **WebSocket placeholder** - A chat box available on drawing page, representing real time chats.
 
 ## 🚀 CSS deliverable
 
