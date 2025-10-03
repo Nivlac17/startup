@@ -23,19 +23,22 @@ header {
 menu {
   flex: 1;
   display: flex; 
-    flex-direction: row;
-
+  flex-direction: row;
   gap: 2em;
   list-style: none;
   text-decoration: none;
 } 
+
+.g{display:grid;grid-template-columns:repeat(8,48px);gap:4px}
+
+.c{width:48px;height:48px;display:grid;place-items:center;border-radius:1px;color:#fff}
 
 
 
 main {
   flex: 1 calc(100vh - 700px);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
