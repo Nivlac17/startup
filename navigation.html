@@ -5,38 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artist's Page</title>
     <link rel="icon" href="sunset.jpeg" />
+    <link rel="stylesheet" href="navigation.css" /> 
   </head>
+  
   <body>
     <header>
       <h1>Lines of Light<sup>&reg;</sup></h1>
-
-      <nav>
         <menu>
           <li><a href="index.html">Home</a></li>
           <li><a href="navigation.html">Artist's Page</a></li>
           <li><a href="draw.html">Draw</a></li>
           <li><a href="quote.html">Quotes</a></li>
         </menu>
-      </nav>
-
-      <hr />
+      <hr/>
     </header>
 
     <main>
-      <form method="get" action="draw.html">
+        <section class="art-selection">
 
-      <table>
-        <thead>
-            Select an art piece or draw new art!
-        </thead>
-        <tbody>
-          <div style="border:2px solid #000; padding:12px; margin-bottom:10px; max-width:400px;">
+      <form method="get" action="draw.html">
+      <h1>Select an art piece or draw new art!</h1>          <div style="border:2px solid #000; padding:12px; margin-bottom:10px; max-width:400px;">
             User
             <button type="submit">Art Title</button>
             <button type="submit">Art Title</button>
             <button type="submit">Art Title</button>
             <button type="submit">Art Title</button>
-          </div>
+        </div>
 
           <div style="border:2px solid #000; padding:12px; margin-bottom:10px; max-width:400px;">
             User
@@ -61,7 +55,12 @@
             New Art: 
             <input type="text" placeholder="Name" />
           </div>
+          </form>
+        </div>    
+        </section>
 
+        <aside class="featured-art">
+        <div>
           <div style="border:2px solid #000; padding:12px; margin-bottom:10px; max-width:225px;">
             <h3>
             Featured Art:
@@ -78,10 +77,9 @@
             <h4>Beutiful Sunset</h4>
             <img src="sunset.jpeg" alt="Sunset" width="200">
             </div>
-          </div>
-
-        </tbody>
-      </table>
+        </div>    
+        </aside>
+    
     </main>
 
     <footer>
