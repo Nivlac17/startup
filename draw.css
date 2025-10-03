@@ -47,6 +47,7 @@ main {
 .gridcolor {
   display: grid;
   grid-template-columns: repeat(2, 50px);
+  gap: 10px;
 }
 .gridcolor button {
   width: 50px;
@@ -86,6 +87,7 @@ button {
   font-size: 1em;                   /* font size */
   font: 300;
   transition: background-color 0.3s ease; /* smooth hover effect */
+  cursor: pointer;
 }
 
 button:hover {
