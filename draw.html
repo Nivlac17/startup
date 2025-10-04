@@ -20,7 +20,10 @@
       </menu>
     </nav>
   </header>
-  <main class="layout"></main>
+
+
+
+  <main class="layout">
   <aside class="color-palet">
       <div class="gridcolor">
         <!-- Example cells; generate more with JavaScript if needed -->
@@ -40,29 +43,48 @@
 
 <section class="art-selection">
 
-<title>GridPad</title>
+    <title>GridPad</title>
 
-  <div class="g" id="g"></div>
+      <div class="g" id="g"></div>
 
-  <script>
-    const hue=v=>`hsl(${((v-1)/9)*120} 70% 45%)`;
-    const onInput=e=>{
-    if(!e.target.classList.contains('c')) return;
-    const n=+e.target.textContent||0;
-    if(n){const v=Math.max(1,Math.min(10,Math.round(n)));e.target.textContent=v;e.target.style.background=hue(v)}
-    else{e.target.style.background='#ddd'}
-    };
-    for(let i=0;i<48;i++){
-    const d=document.createElement('div');
-    d.className='c';
-    d.contentEditable='true';
-    const v=(i%10)+1;
-    d.textContent=v;
-    d.style.background=hue(v);
-    g.appendChild(d);
+      <script>
+         const g = document.getElementById('g');
+
+  const hue = v => `hsl(${(v - 1) * 12} 70% 45%)`; // 1..10 -> 0..120
+  const clamp10 = n => Math.max(1, Math.min(10, Math.round(n)));
+
+  function paint(cell, v) {
+    if (v) {
+      v = clamp10(v);
+      cell.textContent = v;
+      cell.style.background = hue(v);
+    } else {
+      cell.textContent = '';
+      cell.style.background = '#ddd';
     }
-    g.addEventListener('input',onInput);
-  </script>
+  }
+
+  // Build the grid (increase/decrease CELLS as you like)
+  const CELLS = 1980;
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < CELLS; i++) {
+    const d = document.createElement('div');
+    d.className = 'c';
+    d.contentEditable = 'true';
+    const v = (i % 1) + 1; // color of cell
+    d.textContent = v;
+    d.style.background = hue(v);
+    frag.appendChild(d);
+  }
+  g.appendChild(frag);
+
+  // Single delegated handler
+  g.addEventListener('input', e => {
+    if (!e.target.classList.contains('c')) return;
+    const n = Number(e.target.textContent) || 0;
+    paint(e.target, n);
+  });
+      </script>
 
 
 
