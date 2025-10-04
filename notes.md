@@ -16,6 +16,154 @@ HTML code for adding an image
 </div>
 
 
+
+
+CSS Code Example of Draw page:
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 375px;
+  background-color: rgb(2, 31, 41);
+  color: white;
+}
+
+a {
+  color: grey;
+  text-decoration: none;
+}
+
+
+header {
+  flex: 0 10px;
+  background-color: rgb(2, 7, 20);
+}
+
+menu {
+  flex: 1;
+  display: flex; 
+  flex-direction: row;
+  gap: 2em;
+  list-style: none;
+  text-decoration: none;
+} 
+
+.g{
+    display:grid;
+    grid-template-columns:repeat(60,20px);
+    column-gap:1.5px;
+    row-gap: 1.5px;
+    margin: 40px auto 0;
+}
+
+.c{
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    border-radius: 1px;
+}
+
+
+
+main {
+  flex: 1 calc(100vh - 700px);
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: space-around;
+}
+
+.art-selection {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+}
+
+.color-palet {
+    flex: 0 0 250px;
+    align-self: flex-start;
+    justify-content: flex-start;
+    align-items: left;
+    margin: 12% auto 0;
+}
+
+.gridcolor {
+  display: grid;
+  grid-template-columns: repeat(2, 50px);
+  gap: 10px;
+}
+.gridcolor button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+footer {
+  flex: 0 30px;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items : left;
+}
+
+form input {
+  padding: 0.5em;
+  font-size: 1em;
+  border-radius: 20px;
+  width: 200px;
+  max-width: 80%; 
+  justify-content: left;
+}
+
+
+
+button {
+  background-color: rgb(49, 99, 224);
+  color: white;
+  border: 2px solid black;
+  border-radius: 7px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  font: 300;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(85, 94, 117);
+}
+
+
+
+@media (orientation: portrait) {
+  main {
+    flex-direction: column;
+  }
+}
+
+@media (max-height: 700px) {
+  header {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
 this is me editing my notes page, I am invited to write what I learned. I already know a lot about git, but I was very interested by heading syntax given in [this page](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
 
