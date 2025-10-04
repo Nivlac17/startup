@@ -29,8 +29,8 @@ menu {
 .g{
     display:grid;
     grid-template-columns:repeat(60,20px);
-    column-gap:1px;
-    row-gap: 0;
+    column-gap:1.5px;
+    row-gap: 1.5px;
     margin: 40px auto 0;
 }
 
