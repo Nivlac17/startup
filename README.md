@@ -107,12 +107,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [ ] **Header, footer, and main content body** - I used a common CSS file format to style these four css pages.
+- [ ] **Navigation elements** - I used a custom css file type to create my navigation bar.
+- [ ] **Responsive to window resizing** - Flexbox did the majority of the heavy lifting. I am happy with how it turrned out.
+- [ ] **Application elements** - I used a lot of display:flex to get things to align correctly.
+- [ ] **Application text content** - Set all my text to Roboto and it looks nice and clean.
+- [ ] **Application images** - I kept all sunset immages the same.
 
 ## 🚀 React part 1: Routing deliverable
 
