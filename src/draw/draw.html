@@ -42,29 +42,29 @@
     </aside>
 
 
-<section class="art-selection">
-    <title>GridPad</title>
-      <div class="g" id="g"></div>
+  <section class="art-selection">
+      <title>GridPad</title>
+        <div class="g" id="g"></div>
 
-      <script>
+        <script>
 
-        const g = document.getElementById('g');
-        const CELLS = 1980;
-        const frag = document.createDocumentFragment();
+          const g = document.getElementById('g');
+          const CELLS = 1980;
+          const frag = document.createDocumentFragment();
 
-        for (let i = 0; i < CELLS; i++) {
-          const d = document.createElement('div');
-          d.className = 'c';
-          d.contentEditable = 'false';
-          d.style.background = '#fff';
-          frag.appendChild(d);
-        }
+          for (let i = 0; i < CELLS; i++) {
+            const d = document.createElement('div');
+            d.className = 'c';
+            d.contentEditable = 'false';
+            d.style.background = '#fff';
+            frag.appendChild(d);
+          }
 
-        g.appendChild(frag);
+          g.appendChild(frag);
 
-      </script>
+        </script>
 
-  </section>
+    </section>
 </main>
     <br />
         <div style="border:2px solid #000; padding:12px; margin-bottom:10px; max-width:250px;">
