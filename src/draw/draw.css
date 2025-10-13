@@ -1,55 +1,29 @@
-body {
-  display: flex;
-  flex-direction: column;
-  min-width: 375px;
-  background-color: rgb(2, 31, 41);
-  color: white;
-  font-family: Roboto, sans-serif;
-}
-
-a {
-  color: grey;
-  text-decoration: none;
-}
-
-
-header {
-  flex: 0 10px;
-  background-color: rgb(2, 7, 20);
-}
-
-menu {
-  flex: 1;
-  display: flex; 
-  flex-direction: row;
-  gap: 2em;
-  list-style: none;
-  text-decoration: none;
-} 
-
-.g{
-    display:grid;
-    grid-template-columns:repeat(60,20px);
-    column-gap:1.5px;
-    row-gap: 1.5px;
-    margin: 40px auto 0;
-}
-
-.c{
-    aspect-ratio: 1 / 1;
-    display: grid;
-    place-items: center;
-    border-radius: 1px;
-}
-
-
-
-main {
-  flex: 1 calc(100vh - 700px);
+main.layout {
   display: flex;
   flex-direction: row;
-  align-items: left;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  gap: 0px; 
+  flex-wrap: wrap;
+}
+
+.g {
+  display: grid;
+  grid-template-columns: repeat(80, 13px); 
+  grid-auto-rows: 12px;
+  gap: 1px;
+  margin: 40px auto 0;
+  justify-content: center;
+}
+
+.c {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border-radius: 1px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
 }
 
 .art-selection {
@@ -61,10 +35,11 @@ main {
 
 .color-palet {
     flex: 0 0 250px;
-    align-self: flex-start;
-    justify-content: flex-start;
-    align-items: left;
-    margin: 12% auto 0;
+    flex-shrink: 0;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
 }
 
 .gridcolor {
@@ -72,6 +47,7 @@ main {
   grid-template-columns: repeat(2, 50px);
   gap: 10px;
 }
+
 .gridcolor button {
   width: 50px;
   height: 50px;
@@ -79,43 +55,32 @@ main {
   cursor: pointer;
 }
 
-footer {
-  flex: 0 30px;
+
+
+.chat-box {
+  flex-direction: column-reverse;
+  border: 2px solid rgb(0, 5, 7);
+  padding: 12px;
+  margin-bottom: 10px;
+  max-width: 300px;
+  height: 350px;
+  border-radius: 8px;
+  background-color:rgb(255, 255, 255); 
+  color: rgb(0, 0, 0);
+  margin-right: auto;
+  margin-top: 40px;
+  overflow-y: auto;
 }
 
+.chats {
+  overflow-y: auto;
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items : left;
 }
 
-form input {
-  padding: 0.5em;
-  font-size: 1em;
-  border-radius: 20px;
-  width: 200px;
-  max-width: 80%; 
-  justify-content: left;
+.sender {
+  flex-direction: column-reverse;
 }
 
-
-
-button {
-  background-color: rgb(49, 99, 224);
-  color: white;
-  border: 2px solid black;
-  border-radius: 7px;
-  padding: 0.5em 1em;
-  font-size: 1em;
-  font: 300;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: rgb(90, 90, 115);
-}
 
 
 

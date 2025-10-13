@@ -63,7 +63,7 @@ export default function App() {
         <br />
         <a href="https://github.com/Nivlac17/startup">GitHub</a>
         </footer>
-    </div>;
+    </div>
     </BrowserRouter>
     );
 }
