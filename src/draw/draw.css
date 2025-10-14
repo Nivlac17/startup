@@ -5,6 +5,7 @@ main.layout {
   align-items: center;
   gap: 0px; 
   flex-wrap: wrap;
+  margin-bottom: 25px;
 }
 
 .g {
@@ -58,7 +59,8 @@ main.layout {
 
 
 .chat-box {
-  flex-direction: column-reverse;
+  display: flex;
+  flex-direction: column;
   border: 2px solid rgb(0, 5, 7);
   padding: 12px;
   margin-bottom: 10px;
@@ -74,27 +76,6 @@ main.layout {
 
 .chats {
   overflow-y: auto;
-
-}
-
-.sender {
   flex-direction: column-reverse;
 }
 
-
-
-
-@media (orientation: portrait) {
-  main {
-    flex-direction: column;
-  }
-}
-
-@media (max-height: 700px) {
-  header {
-    display: none;
-  }
-  footer {
-    display: none;
-  }
-}

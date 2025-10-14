@@ -45,11 +45,6 @@ export function Draw() {
         <div className="chats">
           <div><p>Hello</p></div>
           <div><p>Hello</p></div>
-          <div><p>Hello</p></div>
-          <div><p>Hello</p></div>
-          <div><p>Hello</p></div>
-          <div><p>Hello</p></div>
-          <div><p>Hello</p></div>
           <div><p>These are messages!</p></div>
           <div><p>Try and read these messages!</p></div>
           <div><p>this is hello from A-a-ron!</p></div>
