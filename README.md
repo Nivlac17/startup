@@ -118,9 +118,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - I bundled my Lines of Light app using Vite, which provides fast development, HMR, and optimized builds.
+- [x] **Components** - I created components for the main app, login page, drawing canvas, quote page,  and gallery page.
+- [x] **Router** - I used React Router to navigate between the login page, drawing page, quote page, and gallery page.
 
 ## 🚀 React part 2: Reactivity deliverable
 
