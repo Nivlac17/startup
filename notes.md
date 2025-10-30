@@ -220,9 +220,7 @@
 
     Here’s the syntax:
 
-    <a href="https://www.example.com">
-      <img src="image.jpg" alt="Description of image" width="300" height="200">
-    </a>
+    <a href="https://www.example.com"><img src="image.jpg" alt="Description of image" width="300" height="200"></a>
 
     Explanation:
 
@@ -498,7 +496,7 @@ Code
     </script>
 
 26. Which of the following correctly describes JSON?
-    It seems like the answer options are missing from your query. JSON stands for JavaScript Object Notation. It's a lightweight, text-based format for representing structured data. It's often used for data interchange between different systems, especially web applications. Here are some key points about JSON: 
+  JSON stands for JavaScript Object Notation. It's a lightweight, text-based format for representing structured data. It's often used for data interchange between different systems, especially web applications. Here are some key points about JSON: 
     Structure: JSON is based on JavaScript object syntax. Data is organized in key-value pairs, enclosed in curly braces {}. Objects can contain nested objects and arrays. Arrays are ordered collections of values, enclosed in square brackets []. 
     Readability: JSON is designed to be human-readable. The syntax is simple and easy to understand, even for those not familiar with JavaScript. 
     Language Independent: While JSON is derived from JavaScript, it's independent of any programming language. This makes it widely usable across different platforms. 
