@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./draw.css";
-// import { GameEvent, GameNotifier } from './websocket';
-// import { Players } from './websocket';
+import { GameEvent, GameNotifier } from './websocket.js';
 
+import "./draw.css";
 
 
 export function Draw() {
   const gridRef = useRef(null);
   const CELLS = 4560;
 
+  const [messages, setMessages] = useState(['']);
+  const [inputMessage, setInputMessage] = useState('');
 
-  
+
   const [selectedColor, setSelectedColor] = useState("black");
   const isDrawing = useRef(false);
 
@@ -28,7 +29,7 @@ export function Draw() {
 
 
 
-useEffect(() => {
+  useEffect(() => {
     const grid = gridRef.current;
     if (!grid) return;
 
@@ -56,6 +57,35 @@ useEffect(() => {
     grid.addEventListener("mousemove", handleMouseMove);
   }, [selectedColor]);
 
+  useEffect(() => {
+    const handler = (event) => {
+      if (event.type === GameEvent.Message) {
+        setMessages((prev) => [...prev, event.value]);
+      // } else if (event.type === GameEvent.System) {
+      //   console.log("System event:", event.value);
+      }
+    };
+  
+
+    GameNotifier.addHandler(handler);
+    return () => GameNotifier.removeHandler(handler);
+  }, []);
+
+
+  const sendMessage = () => {
+    if (!inputMessage.trim()) return;
+      const newMessage = { name: 'Me', message: inputMessage };
+      setMessages((prev) => [...prev, newMessage]);
+      setInputMessage('');
+  };
+
+  // Scroll to most recent chat
+  const chatRef = useRef(null);
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }, [messages]);
 
 
   return (
@@ -90,18 +120,19 @@ useEffect(() => {
       </section>
 
       <div className="chat-box">
-        <div className="chats">
-          <div><p>Hello</p></div>
-          <div><p>Hello</p></div>
-          <div><p>These are messages!</p></div>
-          <div><p>Try and read these messages!</p></div>
-          <div><p>this is hello from A-a-ron!</p></div>
-          <div><p>Hello</p></div>
+        <div className="chats" ref={chatRef}>
+          {messages.map((m, i) => (
+            <div key={i}>
+              <p>{m.name}: {m.message}</p>
+            </div>
+          ))}
         </div>
         <div className="sender">
-          <button>Send</button>
+          <button onClick={sendMessage}>Send</button>
           <label htmlFor="count"></label>
-          <input type="text" id="count" value="Message" readOnly />
+          <input type="text" placeholder="Message" value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+          />
         </div>
       </div>
     </main>

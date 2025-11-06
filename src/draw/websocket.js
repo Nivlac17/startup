@@ -1,8 +1,9 @@
 const GameEvent = {
+    // Event Types will include pictureInfo and textMessage
   System: 'system',
-  End: 'gameEnd',
-  Start: 'gameStart',
+  Message: 'textMessage',
 };
+
 
 class EventMessage {
   constructor(from, type, value) {
@@ -16,15 +17,19 @@ class GameEventNotifier {
   events = [];
   handlers = [];
 
+
+
   constructor() {
     // Simulate chat messages that will eventually come over WebSocket
     setInterval(() => {
-      const score = Math.floor(Math.random() * 3000);
-      const date = new Date().toLocaleDateString();
-      const userName = 'Eich';
-      this.broadcastEvent(userName, GameEvent.End, { name: userName, score: score, date: date });
+      const message = "First Comment " + Math.floor(Math.random() * 3000);
+      const userName = 'Fred';
+      this.broadcastEvent(userName, GameEvent.Message, { name: userName, message: message });
     }, 5000);
   }
+
+
+
 
   broadcastEvent(from, type, value) {
     const event = new EventMessage(from, type, value);
