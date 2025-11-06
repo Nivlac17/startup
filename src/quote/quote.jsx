@@ -7,10 +7,20 @@ export function Quote() {
   const [quote, setQuote] = React.useState('Loading...');
   const [quoteAuthor, setQuoteAuthor] = React.useState('unknown');
 
+
+
+
     React.useEffect(() => {
-      setQuote('Veni, Vidi, Vici');
-      setQuoteAuthor('Julius');
-    }, []);
+
+
+    fetch('https://quote.cs260.click')
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+        console.log(jsonResponse);
+        setQuote(jsonResponse.quote);
+        setQuoteAuthor(jsonResponse.author);
+    });
+     }, []);
 
 return (
      <main className="container-fluid ">

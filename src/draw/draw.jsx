@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./draw.css";
+// import { GameEvent, GameNotifier } from './websocket';
+// import { Players } from './websocket';
+
+
 
 export function Draw() {
   const gridRef = useRef(null);
@@ -21,6 +25,8 @@ export function Draw() {
     }
     grid.appendChild(frag);
   }, []);
+
+
 
 useEffect(() => {
     const grid = gridRef.current;
