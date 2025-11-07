@@ -126,8 +126,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - The app can now sign in with options to view other art with messages received from a mocked websocket.
+- [x] **Hooks** - I used "useNavigate" for route navigation and "useState" to manage the new art name input field.
 
 ## 🚀 Service deliverable
 
