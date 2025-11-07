@@ -15,8 +15,6 @@ export function Watch() {
   const [messages, setMessages] = useState(['']);
   const [inputMessage, setInputMessage] = useState('');
 
-
-  const [selectedColor, setSelectedColor] = useState("black");
   const isDrawing = useRef(false);
 
   useEffect(() => {
@@ -33,33 +31,7 @@ export function Watch() {
 
 
 
-  useEffect(() => {
-    const grid = gridRef.current;
-    if (!grid) return;
-
-    const paint = (e) => {
-      if (e.target.classList.contains("c")) {
-        e.target.style.backgroundColor = selectedColor;
-      }
-    };
-
-    const handleMouseDown = (e) => {
-      isDrawing.current = true;
-      paint(e);
-    };
-
-    const handleMouseUp = () => {
-      isDrawing.current = false;
-    };
-
-    const handleMouseMove = (e) => {
-      if (isDrawing.current) paint(e);
-    };
-
-    grid.addEventListener("mousedown", handleMouseDown);
-    grid.addEventListener("mouseup", handleMouseUp);
-    grid.addEventListener("mousemove", handleMouseMove);
-  }, [selectedColor]);
+  
 
   useEffect(() => {
     const handler = (event) => {
