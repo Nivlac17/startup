@@ -1,8 +1,22 @@
 import React from "react";
 import "./navigation.css";
+// import { Watch } from "./draw/watch.jsx";
+import { useNavigate } from "react-router-dom";
+
 
 
 export function Navigation() {
+
+
+
+      const navigate = useNavigate();
+
+      const viewArt = () => {
+      navigate("/watch");
+      };
+
+
+
 return (
      <main>
             <div className="art-selection">
@@ -10,7 +24,7 @@ return (
               <h1>Select an art piece or draw new art!</h1>          
               <div className="selection-style">
                     User:
-                    <button type="submit">Art Title</button>
+                    <button onClick={viewArt}>Art Title</button>
                     <button type="submit">Art Title</button>
                     <button type="submit">Art Title</button>
                     <button type="submit">Art Title</button>

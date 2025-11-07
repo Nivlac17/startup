@@ -8,6 +8,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 
 import { Draw } from './draw/draw';
+import { Watch } from './draw/watch';
 
 import { Navigation } from './navigation/navigation';
 
@@ -54,6 +55,7 @@ export default function App() {
                     <Route path='/draw' element={<Draw />} />
                     <Route path='/navigation' element={<Navigation />} />
                     <Route path='/quote' element={<Quote />} />
+                    <Route path="/watch" element={<Watch />} />
                     <Route path='*' element={<NotFound />} />
             </Routes>
 
