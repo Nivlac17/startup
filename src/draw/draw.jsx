@@ -110,10 +110,13 @@ export function Draw() {
               onClick={() => setSelectedColor(color)}
             ></button>
           ))}
+          <div className="selectedColor">
+            <button style={{ background: selectedColor }}></button>
+          </div>
         </div>
       </aside>
 
-      <button style={{ background: selectedColor }}></button>
+
 
       <section className="art-selection">
         <div className="g" id="g" ref={gridRef}></div>

@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navigation.css";
-// import { Watch } from "./draw/watch.jsx";
 import { useNavigate } from "react-router-dom";
 
 
 
 export function Navigation() {
 
-
-
       const navigate = useNavigate();
+      const [newArtName, setNewArtName] = useState("");
+
+
 
       const viewArt = () => {
-      navigate("/watch");
+            navigate("/watch");
+      };
+
+      const drawArt = () => {
+            if (!newArtName.trim()) return;
+                  navigate("/draw");
       };
 
 
@@ -23,33 +28,33 @@ return (
 
               <h1>Select an art piece or draw new art!</h1>          
               <div className="selection-style">
-                    User:
+                    Calvin:
+                    <button onClick={viewArt}>Awesomenes!!!!</button>
+                    <button onClick={viewArt}>good titlee</button>
+                    <button onClick={viewArt}>sleep</button>
+                    <button onClick={viewArt}>Time</button>
+
+              </div>
+
+              <div className="selection-style">
+                    Fred:
+                    <button onClick={viewArt}>Something here</button>
+                    <button onClick={viewArt}>Latin</button>
+                    <button onClick={viewArt}>random</button>
+              </div>
+
+              <div className="selection-style">
+                    Dave:
+                    <button onClick={viewArt}>Kings</button>
+                    <button onClick={viewArt}>supperest awesome art</button>
+                    <button onClick={viewArt}>final thing here</button>
                     <button onClick={viewArt}>Art Title</button>
-                    <button type="submit">Art Title</button>
-                    <button type="submit">Art Title</button>
-                    <button type="submit">Art Title</button>
-                    <button type="submit">Art Title</button>
-              </div>
-
-              <div className="selection-style">
-                    User:
-                    <button type="submit">Art Title</button>
-                    <button type="submit">Art Title</button>
-                    <button type="submit">Art Title</button>
-              </div>
-
-              <div className="selection-style">
-                    User:
-                    <button type="submit">Art Title</button>
-                    <button type="submit">Art Title</button>
-                    <button type="submit">Art Title</button>
-                    <button type="submit">Art Title</button>
               </div>
             
               <div className="selection-style">
-                <button type="submit">+</button>
-                New Art: 
-                <input type="text" placeholder="Name" />
+                  <button onClick={drawArt}>+</button>
+                  New Art: 
+                  <input type="text" placeholder="Name" value={newArtName} onChange={(e) => setNewArtName(e.target.value)}/>
               </div>
             </div>  
 
