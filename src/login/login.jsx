@@ -1,27 +1,26 @@
-import React from "react";
+import React from 'react';
 
+import { Unauthenticated } from './unauthenticated';
+import { Authenticated } from './authenticated';
+import { AuthState } from './authState';
 
-export function Login() {
-return (
+export function Login({ userName, authState, onAuthChange }) {
+  return (
      <main className="container-fluid ">
       <div>
-              <h1>Lines of Light</h1>
-
-      <form method="get" to="navigation.html">
-        <div>
-          {/* <!-- <span>@</span> --> */}
-          <input type="text" placeholder="your@email.com" />
-        </div>
-        <div>
-          {/* <!-- <span>🔒</span> --> */}
-          <input type="password" placeholder="password" />
-        </div>
-        <section>
-          <button type="submit">Login</button>
-          <button type="submit">Register</button>
-        </section>
-      </form>
-            </div>
+        {authState !== AuthState.Unknown && <h1>Lines of Light</h1>}
+        {authState === AuthState.Authenticated && (
+          <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
+        )}
+        {authState === AuthState.Unauthenticated && (
+          <Unauthenticated
+            userName={userName}
+            onLogin={(loginUserName) => {
+              onAuthChange(loginUserName, AuthState.Authenticated);
+            }}
+          />
+        )}
+      </div>
     </main>
-);
+  );
 }

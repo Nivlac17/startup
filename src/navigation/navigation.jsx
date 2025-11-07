@@ -66,11 +66,11 @@ return (
                 <img src="sunset.jpeg" alt="Sunset" width="200"/>
                 </div>
                 <div>
-                <h4>Beutiful Sunset</h4>
+                <h4>Still a Sunset</h4>
                 <img src="sunset.jpeg" alt="Sunset" width="200"/>
                 </div>
                 <div>
-                <h4>Beutiful Sunset</h4>
+                <h4>Wow it's... a Sunset</h4>
                 <img src="sunset.jpeg" alt="Sunset" width="200"/>
                 </div>
         </div>        
