@@ -73,6 +73,12 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
+apiRouter.get('/navigation', verifyAuth, async (req, res) => {
+  res.send([
+    { name: 'Draw', path: '/draw' },
+    { name: 'Watch', path: '/watch' },
+  ]);
+});
 
 // Default error handler
 app.use(function (err, req, res, next) {
