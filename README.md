@@ -138,7 +138,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Calls to third party endpoints** - I added a third party call which loads an inspirational quote from https://quote.cs260.click
 - [ ] **Backend service endpoints** - Placeholders for login that stores the current user on the server. 
 - [ ] **Frontend calls service endpoints** - I did this using the fetch function.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [ ] **Supports registration, login, logout, and restricted endpoint** - Done! Secure endpoints for Watch and Draw.
 
 
 ## 🚀 DB deliverable
