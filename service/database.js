@@ -3,9 +3,10 @@ const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
-const db = client.db('simon');
+const db = client.db('startup');
 const userCollection = db.collection('user');
-const scoreCollection = db.collection('score');
+const artPortfolio = db.collection('portfolio');
+// const scoreCollection = db.collection('score');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -34,25 +35,33 @@ async function updateUser(user) {
   await userCollection.updateOne({ email: user.email }, { $set: user });
 }
 
-async function addScore(score) {
-  return scoreCollection.insertOne(score);
+// async function addScore(score) {
+//   return scoreCollection.insertOne(score);
+// }
+
+async function addArt(portfolio) {
+  return artPortfolio.insertOne(portfolio);
 }
 
-function getHighScores() {
-  const query = { score: { $gt: 0, $lt: 900 } };
-  const options = {
-    sort: { score: -1 },
-    limit: 10,
-  };
-  const cursor = scoreCollection.find(query, options);
-  return cursor.toArray();
+async function getArt(portfolio) {
+  return artPortfolio.find(query).toArray();
 }
+
+// function getHighScores() {
+//   const query = { score: { $gt: 0, $lt: 900 } };
+//   const options = {
+//     sort: { score: -1 },
+//     limit: 10,
+//   };
+//   const cursor = scoreCollection.find(query, options);
+//   return cursor.toArray();
+// }
 
 module.exports = {
   getUser,
   getUserByToken,
   addUser,
   updateUser,
-  addScore,
-  getHighScores,
+  addArt,
+  getArt
 };

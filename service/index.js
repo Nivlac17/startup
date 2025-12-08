@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
-// const authCookieName = 'token'; 
+const authCookieName = 'token'; 
 const DB = require('./database.js');
 
 
@@ -72,7 +72,6 @@ const verifyAuth = async (req, res, next) => {
 
 // ---------------------break from example ----------------------
 
-// 
 apiRouter.get('/navigation', verifyAuth, async (req, res) => {
   res.send([
     { name: 'Draw', path: '/draw' },
@@ -80,7 +79,6 @@ apiRouter.get('/navigation', verifyAuth, async (req, res) => {
   ]);
 });
 
-// ---------------------------------------------------------------
 
 
 // Default error handler
