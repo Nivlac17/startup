@@ -4,8 +4,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { GameEvent, GameNotifier } from './websocket.js';
 import { useLocation } from "react-router-dom";
-
-
 import "./draw.css";
 
 const COLOR_PALETTE = [
@@ -27,18 +25,17 @@ const DEFAULT_COLOR = "whitesmoke";
 export function Watch() {
   const gridRef = useRef(null);
   const location = useLocation();
-
   const { title, artCsv } = location.state || {};
 
+  const [name, setName] = useState('');
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
 
 
-
+  // build drawing
   useEffect(() => {
     const grid = gridRef.current;
     if (!grid) return;
-
     if (!artCsv) {
       console.warn(
         "No artCsv in navigation state, artCsv not passed from Navigation?"
@@ -47,47 +44,30 @@ export function Watch() {
       return;
     }
 
-
     const values = artCsv.split(",");
     const frag = document.createDocumentFragment();
 
     for (let i = 0; i < values.length; i++) {
       const idx = parseInt(values[i], 10);
       const color = COLOR_PALETTE[idx] ?? DEFAULT_COLOR;
-
       const d = document.createElement("div");
       d.className = "c";
       d.style.backgroundColor = color;
       frag.appendChild(d);
     }
-
     grid.appendChild(frag);
   }, [artCsv]);
 
 
-  
-
-  useEffect(() => {
-    const handler = (event) => {
-      if (event.type === GameEvent.Message) {
-        setMessages((prev) => [...prev, event.value]);
-      // } else if (event.type === GameEvent.System) {
-      //   console.log("System event:", event.value);
-      }
-    };
-  
-
-    GameNotifier.addHandler(handler);
-    return () => GameNotifier.removeHandler(handler);
-  }, []);
 
 
-  const sendMessage = () => {
-    if (!inputMessage.trim()) return;
-      const newMessage = { name: 'Me', message: inputMessage };
-      setMessages((prev) => [...prev, newMessage]);
-      setInputMessage('');
+
+  const onKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
   };
+
 
   // Scroll to most recent chat
   const chatRef = useRef(null);
@@ -114,7 +94,7 @@ export function Watch() {
           ))}
         </div>
         <div className="sender">
-          <button onClick={sendMessage}>Send</button>
+          <button onClick={sendMsg}>Send</button>
           <label htmlFor="count"></label>
           <input type="text" placeholder="Message" value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
