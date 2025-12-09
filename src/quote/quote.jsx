@@ -1,17 +1,11 @@
 import React from "react";
 import './quote.css';
 
-
 export function Quote() {
-
   const [quote, setQuote] = React.useState('Loading...');
   const [quoteAuthor, setQuoteAuthor] = React.useState('unknown');
 
-
-
-
     React.useEffect(() => {
-
 
     fetch('https://quote.cs260.click')
     .then((response) => response.json())

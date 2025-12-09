@@ -9,7 +9,8 @@ const DB = require('./database.js');
 
 
 // The scores and users are saved in memory and disappear whenever the service is restarted.
-let users = [];
+// let users = [];
+
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 // JSON body parsing using built-in middleware
 app.use(express.json());
@@ -55,6 +56,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
     delete user.token;
+    await DB.updateUser(user);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
@@ -70,14 +72,49 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
-// ---------------------break from example ----------------------
 
+
+// Navigation apis
 apiRouter.get('/navigation', verifyAuth, async (req, res) => {
   res.send([
     { name: 'Draw', path: '/draw' },
     { name: 'Watch', path: '/watch' },
   ]);
 });
+
+
+
+// Saving Art to Database
+apiRouter.post('/portfolio', verifyAuth, async (req, res) => {
+  try {
+    const user = await findUser('token', req.cookies[authCookieName]);
+    if (!user) {
+      return res.status(401).send({ msg: 'Unauthorized' });
+    }
+    const { title, artCsv } = req.body;
+    if (!title || !artCsv) {
+      return res.status(400).send({ msg: 'title and artCsv are required' });
+    }
+    await DB.addArt({userName: user.email,title,artCsv,});
+    res.status(201).send({ msg: 'Art saved successfully' });
+  } catch (err) {
+    console.error('Error saving art:', err);
+    res.status(500).send({ msg: 'Server error' });
+  }
+});
+
+
+// Get all art from database for Navigation page
+apiRouter.get('/portfolio/all', verifyAuth, async (req, res) => {
+  try {
+    const art = await DB.getAllArt();
+    res.send(art);
+  } catch (err) {
+    console.error('Error fetching all art:', err);
+    res.status(500).send({ msg: 'Server error' });
+  }
+});
+
 
 
 

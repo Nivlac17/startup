@@ -1,68 +1,106 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./navigation.css";
 import { useNavigate } from "react-router-dom";
 
 
 
 export function Navigation() {
-
       const navigate = useNavigate();
+
       const [newArtName, setNewArtName] = useState("");
-
-
-
-      const viewArt = () => {
-            navigate("/watch");
+      const [portfolio, setPortfolio] = useState([]);
+      const [loading, setLoading] = useState(true);
+      
+      const viewArt = (art) => {
+      navigate("/watch", {
+            state: {
+            userName: art.userName,
+            title: art.title,
+            artCsv: art.artCsv,
+            },
+      });
       };
 
       const drawArt = () => {
             if (!newArtName.trim()) return;
-                  navigate("/draw");
+            navigate("/draw", {
+            state: { artTitle: newArtName.trim() },  
+      });
+      setNewArtName(""); 
       };
+
+      useEffect(() => {
+            const fetchPortfolio = async () => {
+                  try {
+                        const res = await fetch("/api/portfolio/all");
+                  if (!res.ok) {
+                        console.error("Failed to load portfolio");
+                        setLoading(false);
+                        return;
+                  }
+                  const data = await res.json();
+                  setPortfolio(data);
+                  } catch (err) {
+                        console.error("Error loading portfolio:", err);
+                  } finally {
+                        setLoading(false);
+                  }
+            };
+
+            fetchPortfolio();
+      }, []);
+
+      const groupedByUser = portfolio.reduce((acc, art) => {
+      const email = art.userName || "";
+      const rawName = email.split("@")[0] || "Unknown";
+      const displayName = rawName.charAt(0).toUpperCase() + rawName.slice(1);
+
+      if (!acc[displayName]) {
+            acc[displayName] = [];
+      }
+      acc[displayName].push(art);
+      return acc;
+      }, {});
+
 
 
 
 return (
      <main>
             <div className="art-selection">
+            <h1>Select an art piece or draw new art!</h1>
 
-              <h1>Select an art piece or draw new art!</h1>          
-              <div className="selection-style">
-                    Calvin:
-                    <button onClick={viewArt}>Awesomenes!!!!</button>
-                    <button onClick={viewArt}>good titlee</button>
-                    <button onClick={viewArt}>sleep</button>
-                    <button onClick={viewArt}>Time</button>
+            <div className="selection-style">
+            <button onClick={drawArt}>+</button>
+            New Art:
+            <input
+                  type="text"
+                  placeholder="Name"
+                  value={newArtName}
+                  onChange={(e) => setNewArtName(e.target.value)}
+            />
+            </div>
 
-              </div>
+            {loading && <p>Loading portfolio...</p>}
 
-              <div className="selection-style">
-                    Fred:
-                    <button onClick={viewArt}>Something here</button>
-                    <button onClick={viewArt}>Latin</button>
-                    <button onClick={viewArt}>random</button>
-              </div>
-
-              <div className="selection-style">
-                    Dave:
-                    <button onClick={viewArt}>Kings</button>
-                    <button onClick={viewArt}>supperest awesome art</button>
-                    <button onClick={viewArt}>final thing here</button>
-                    <button onClick={viewArt}>Art Title</button>
-              </div>
-            
-              <div className="selection-style">
-                  <button onClick={drawArt}>+</button>
-                  New Art: 
-                  <input type="text" placeholder="Name" value={newArtName} onChange={(e) => setNewArtName(e.target.value)}/>
-              </div>
-            </div>  
+            {!loading &&
+            Object.entries(groupedByUser).map(([artistName, arts]) => (
+                  <div className="selection-style" key={artistName}>
+                  {artistName}:
+                  {arts.map((art) => (
+                  <button key={art._id} onClick={() => viewArt(art)}>
+                        {art.title}
+                  </button>
+                  ))}
+                  </div>
+            ))}
+            </div>
 
 
           <div className="featured-art">
                 <h3>Featured Art: </h3>
                 <div>
-                <h4>Beutiful Sunset</h4>
+                <h4>Beautiful Sunset</h4>
                 <img src="sunset.jpeg" alt="Sunset" width="200"/>
                 </div>
                 <div>

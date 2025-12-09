@@ -39,23 +39,36 @@ async function updateUser(user) {
 //   return scoreCollection.insertOne(score);
 // }
 
-async function addArt(portfolio) {
-  return artPortfolio.insertOne(portfolio);
+async function addArt({ userName, title, artCsv }) {
+  return artPortfolio.updateOne(
+    { userName, title },
+    {
+      $set: {
+        artCsv,
+        updated: new Date(),
+      },
+      $setOnInsert: {
+        created: new Date(),
+      },
+    },
+    { upsert: true }
+  );
 }
 
-async function getArt(portfolio) {
-  return artPortfolio.find(query).toArray();
+
+async function getArtByUser(userName) {
+  return artPortfolio.find({ userName }).toArray();
 }
 
-// function getHighScores() {
-//   const query = { score: { $gt: 0, $lt: 900 } };
-//   const options = {
-//     sort: { score: -1 },
-//     limit: 10,
-//   };
-//   const cursor = scoreCollection.find(query, options);
-//   return cursor.toArray();
-// }
+async function getArtByUserAndTitle(userName, title) {
+  return artPortfolio.findOne({ userName, title });
+}
+
+async function getAllArt() {
+  return artPortfolio.find({}).toArray();
+}
+
+
 
 module.exports = {
   getUser,
@@ -63,5 +76,7 @@ module.exports = {
   addUser,
   updateUser,
   addArt,
-  getArt
+  getArtByUser,
+  getArtByUserAndTitle,
+  getAllArt,
 };
