@@ -145,8 +145,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [ ] **Stores data in MongoDB** - Done! Stores log in credentials and art portfolios. 
+- [ ] **Stores credentials in MongoDB** - Done! Stores log in credentials and art portfolios.
 
 ## 🚀 WebSocket deliverable
 
