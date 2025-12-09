@@ -1,7 +1,6 @@
 // Non-Artist can watch the other artist draw and send messages from this page -> accessable by selecting the 
 // "Art Title" button. User cannot draw. create artist check
 
-
 import React, { useEffect, useRef, useState } from "react";
 import { GameEvent, GameNotifier } from './websocket.js';
 import { useLocation } from "react-router-dom";
@@ -48,7 +47,6 @@ export function Watch() {
       return;
     }
 
-    // grid.innerHTML = ""; // clear existing
 
     const values = artCsv.split(",");
     const frag = document.createDocumentFragment();

@@ -6,7 +6,6 @@ const client = new MongoClient(url);
 const db = client.db('startup');
 const userCollection = db.collection('user');
 const artPortfolio = db.collection('portfolio');
-// const scoreCollection = db.collection('score');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -34,10 +33,6 @@ async function addUser(user) {
 async function updateUser(user) {
   await userCollection.updateOne({ email: user.email }, { $set: user });
 }
-
-// async function addScore(score) {
-//   return scoreCollection.insertOne(score);
-// }
 
 async function addArt({ userName, title, artCsv }) {
   return artPortfolio.updateOne(

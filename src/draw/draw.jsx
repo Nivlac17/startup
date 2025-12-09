@@ -141,7 +141,7 @@ export function Draw() {
   }, [messages]);
 
 
-    // ---- EXPORT GRID TO CSV ----
+    // ---- Export grid as CSV ------------
 const saveArtToDatabase = async () => {
   if (!artTitle.trim()) {
     alert("Please enter an art title."); //Tis for when someone clicks the "draw" button at the top.
@@ -201,8 +201,6 @@ const saveArtToDatabase = async () => {
           </div>
         </div>
       </aside>
-
-
 
       <section className="art-selection">
         <div className="g" id="g" ref={gridRef}></div>
