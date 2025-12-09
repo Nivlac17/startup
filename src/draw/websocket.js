@@ -1,7 +1,7 @@
 const GameEvent = {
     // Event Types will include pictureInfo and textMessage
   System: 'system',
-  Message: 'textMessage',
+  Message: 'message',
 };
 
 
@@ -20,12 +20,21 @@ class GameEventNotifier {
 
 
   constructor() {
-    // Simulate chat messages that will eventually come over WebSocket
-    setInterval(() => {
-      const message = "First Comment " + Math.floor(Math.random() * 3000);
-      const userName = 'Fred';
-      this.broadcastEvent(userName, GameEvent.Message, { name: userName, message: message });
-    }, 5000);
+    let port = window.location.port;
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+    this.socket.onopen = (event) => {
+      this.receiveEvent(new EventMessage('Startup', GameEvent.System, { msg: 'connected' }));
+    };
+    this.socket.onclose = (event) => {
+      this.receiveEvent(new EventMessage('Startup', GameEvent.System, { msg: 'disconnected' }));
+    };
+    this.socket.onmessage = async (msg) => {
+      try {
+        const event = JSON.parse(await msg.data.text());
+        this.receiveEvent(event);
+      } catch {}
+    };
   }
 
 

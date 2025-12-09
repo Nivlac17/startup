@@ -5,6 +5,8 @@ const uuid = require('uuid');
 const app = express();
 const authCookieName = 'token'; 
 const DB = require('./database.js');
+const { chatWebsocket } = require('./chatWebsocket.js');
+
 
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -163,3 +165,4 @@ const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
+chatWebsocket(httpService);

@@ -59,14 +59,10 @@ export function Watch() {
   }, [artCsv]);
 
 
+  //  sendMessage()
+    GameNotifier.broadcastEvent("userName", GameEvent.Start, {});
 
 
-
-  const onKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      sendMessage();
-    }
-  };
 
 
   // Scroll to most recent chat
@@ -94,7 +90,7 @@ export function Watch() {
           ))}
         </div>
         <div className="sender">
-          <button onClick={sendMsg}>Send</button>
+          <button onClick={sendMessage}>Send</button>
           <label htmlFor="count"></label>
           <input type="text" placeholder="Message" value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
