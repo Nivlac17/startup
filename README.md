@@ -1,25 +1,16 @@
 # Lines of Light
 
-[My Notes](notes.md)
-
 This project is a simple grid art creator, where users will be able to draw pictures by filling in the grid squares with selected colors. The application will provide a blank grid canvas, color selection tools, and the ability to save artwork. The app will also allow other users to watch you draw, and include an option for them to comment on your artwork as you draw, making it possible to play games such as pictionary.
-
-![Design image](sunset.jpeg)
-
-
-
-> [!NOTE]
->  If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
 
 ## 🚀 Specification Deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -88,31 +79,31 @@ Loading grid data
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://linesoflight.click).
+- [x] **Server deployed and accessible with custom domain name** - [My server link](https://linesoflight.click).
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I created 3 HTML pages that represent the ability to login, select art to view, and a page to draw and view another person drawing.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - The login page automatically links to the art selection page. The the art selection buttons link to the drawing page.
-- [ ] **Text** - Each of the art piece is represented by a textual description. The chat feature also shows possible chat info.
-- [ ] **Images** - I added a picture as the tab icon; I also added images for featured art place holders.
-- [ ] **Login placeholder** - Input box and submit button for login.
-- [ ] **DB data placeholder** - A place holder to find other user's artwork in db.
-- [ ] **WebSocket placeholder** - A chat box available on drawing page, representing real time chats.
+- [x] **HTML pages** - I created 3 HTML pages that represent the ability to login, select art to view, and a page to draw and view another person drawing.
+- [x] **Proper HTML element usage** - I did not complete this part of the deliverable.
+- [x] **Links** - The login page automatically links to the art selection page. The the art selection buttons link to the drawing page.
+- [x] **Text** - Each of the art piece is represented by a textual description. The chat feature also shows possible chat info.
+- [x] **Images** - I added a picture as the tab icon; I also added images for featured art place holders.
+- [x] **Login placeholder** - Input box and submit button for login.
+- [x] **DB data placeholder** - A place holder to find other user's artwork in db.
+- [x] **WebSocket placeholder** - A chat box available on drawing page, representing real time chats.
 
 ## 🚀 CSS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I used a common CSS file format to style these four css pages.
-- [ ] **Navigation elements** - I used a custom css file type to create my navigation bar.
-- [ ] **Responsive to window resizing** - Flexbox did the majority of the heavy lifting. I am happy with how it turrned out.
-- [ ] **Application elements** - I used a lot of display:flex to get things to align correctly.
-- [ ] **Application text content** - Set all my text to Roboto and it looks nice and clean.
-- [ ] **Application images** - I kept all sunset immages the same.
+- [x] **Header, footer, and main content body** - I used a common CSS file format to style these four css pages.
+- [x] **Navigation elements** - I used a custom css file type to create my navigation bar.
+- [x] **Responsive to window resizing** - Flexbox did the majority of the heavy lifting. I am happy with how it turrned out.
+- [x] **Application elements** - I used a lot of display:flex to get things to align correctly.
+- [x] **Application text content** - Set all my text to Roboto and it looks nice and clean.
+- [x] **Application images** - I kept all sunset immages the same.
 
 ## 🚀 React part 1: Routing deliverable
 
@@ -133,27 +124,17 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I completed this.
-- [ ] **Static middleware for frontend** - I completed this.
-- [ ] **Calls to third party endpoints** - I added a third party call which loads an inspirational quote from https://quote.cs260.click
-- [ ] **Backend service endpoints** - Placeholders for login that stores the current user on the server. 
-- [ ] **Frontend calls service endpoints** - I did this using the fetch function.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - Done! Secure endpoints for Watch and Draw.
+- [x] **Node.js/Express HTTP service** - I completed this.
+- [x] **Static middleware for frontend** - I completed this.
+- [x] **Calls to third party endpoints** - I added a third party call which loads an inspirational quote from https://quote.cs260.click
+- [x] **Backend service endpoints** - Placeholders for login that stores the current user on the server. 
+- [x] **Frontend calls service endpoints** - I did this using the fetch function.
+- [x] **Supports registration, login, logout, and restricted endpoint** - Done! Secure endpoints for Watch and Draw.
 
 
 ## 🚀 DB deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - Done! Stores log in credentials and art portfolios. 
-- [ ] **Stores credentials in MongoDB** - Done! Stores log in credentials and art portfolios.
-
-## 🚀 WebSocket deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - Done! Stores log in credentials and art portfolios. 
+- [x] **Stores credentials in MongoDB** - Done! Stores log in credentials and art portfolios.
