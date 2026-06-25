@@ -1,4 +1,4 @@
-# Your startup name here
+# Lines of Light
 
 [My Notes](notes.md)
 
