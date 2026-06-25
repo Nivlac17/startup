@@ -28,8 +28,8 @@ sequenceDiagram
     actor Bud
     participant Server
 
-    Alice->>Server: Paints a square on the grid
-    Server-->>Alice: Confirm change.
+    Alice->>Server: Paints a square on the grid   .
+    Server-->>Alice: Confirm change .
     Server-->>Juan:   Update grid with Alice's change
     Server-->>Bud: Update grid with Alice's change
 
