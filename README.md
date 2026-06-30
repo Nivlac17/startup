@@ -33,14 +33,14 @@ sequenceDiagram
     Server-->>Juan:   Update grid with Alice's change
     Server-->>Bud: Update grid with Alice's change
 
-    Juan->>Server: Paints  a square on the grid
-    Server-->>Juan:   Confirm change
+    Juan->>Server: Paints a square on the grid
+    Server-->>Juan:  Confirm change
     Server-->>Alice: Update grid with Juan's change
     Server-->>Bud: Update grid with Juan's change
 
     Bud->>Server: Sends chat message
     Server-->>Alice: Display Bud's chat message
-    Server-->>Juan: Display Bud's chat message 
+    Server-->>Juan: Display Bud's chat message
 
 ```
 
