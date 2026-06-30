@@ -84,24 +84,24 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Rented EC2 server** - I did not complete this part of the deliverable.
-- [ ] **Leased domain name** - I did not complete this part of the deliverable.
-- [ ] **Server accessible** from my domain: [https://yourdomainnamehere.click](https://yourdomainnamehere.click) - I did not complete this part of the deliverable.
+- [x] **Rented EC2 server** - I did not complete this part of the deliverable.
+- [x] **Leased domain name** - I did not complete this part of the deliverable.
+- [x] **Server accessible** from my domain: [https://yourdomainnamehere.click](https://yourdomainnamehere.click) - I did not complete this part of the deliverable.
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **HTML pages** - I made 4 HTML pages for navigation, drawing, logging in, and an api quote page.
+- [x] **Proper HTML element usage** - I used proper elements.
+- [x] **Links** - The login page automatically links to the art selection page. I also added links for navigation.
+- [x] **Text** - I added placeholder text for upcoming functionality.
+- [x] **3rd party API placeholder** - I made a placeholder for a page that calls a third party api.
+- [x] **Images** - I added a free image to my html website.
+- [x] **Login placeholder** - I created a login page based on the simon login page.
+- [x] **DB data placeholder** - I place holder to find other user's artwork in db.
+- [x] **WebSocket placeholder** - A chat box available on drawing page, representing real time chats.
 
 ## 🚀 CSS deliverable
 
