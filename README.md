@@ -98,7 +98,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Links** - The login page automatically links to the art selection page. I also added links for navigation.
 - [x] **Text** - I added placeholder text for upcoming functionality.
 - [x] **3rd party API placeholder** - I made a placeholder for a page that calls a third party api.
-- [x] **Images** - I added a free image to my html website.
+- [x] **Images** - I added a free image to my html website quote.
 - [x] **Login placeholder** - I created a login page based on the simon login page.
 - [x] **DB data placeholder** - I place holder to find other user's artwork in db.
 - [x] **WebSocket placeholder** - A chat box available on drawing page, representing real time chats.
