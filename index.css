@@ -8,24 +8,20 @@ main {
   color: white;
 }
 
-.app {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-width: 375px;
-  min-height: 100vh;
-  background-color: rgb(2, 31, 41);
-  color: white;
-  font-family: Roboto, sans-serif;
-}
+
 
 a {
   color: white;
   text-decoration: none;
 }
 
-div {
-  margin: 10px;
+.art-card {
+  border: 2px solid black;
+  padding: 12px;
+  margin: 10px auto;
+  width: 500px;
+  max-width: 90%;
+  text-align: center;
 }
 
 header {
