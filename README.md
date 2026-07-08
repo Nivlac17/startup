@@ -107,13 +107,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Visually appealing colors and layout. No overflowing elements.** - I did not complete this part of the deliverable.
-- [ ] **Use of a CSS framework** - I did not complete this part of the deliverable.
-- [ ] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
-- [ ] **Use of a imported font** - I did not complete this part of the deliverable.
-- [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **Visually appealing colors and layout. No overflowing elements.** -  I used a common CSS file format to style these four css pages.
+- [x] **Use of a CSS framework** - I used a little bootstrap for some of this, but I mostly wrote my own.
+- [x] **All visual elements styled using CSS** -I styled the body, header, menu, links, main content area, grid cells, color palette, forms, inputs, buttons, chat box, and footer using CSS.
+- [x] **Responsive to window resizing using flexbox and/or grid display** - II used flexbox for the body, header/menu, main layout, forms, and chat layout. I also used CSS grid for the main drawing grid and color palette. I added a media query so the main layout changes direction on portrait screens.
+- [x] **Use of a imported font** - I Used Times New Roman font on all pages
+- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** -  I completed this by using element selectors like `body`, `header`, `main`, `form`, and `button` etc..
 
 ## 🚀 React part 1: Routing deliverable
 

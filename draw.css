@@ -1,12 +1,15 @@
 body {
   margin: 0;
   background-color: rgb(2, 31, 41);
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 main {
   background-color: rgb(2, 31, 41);
   color: white;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
 
 a {
   color: white;
