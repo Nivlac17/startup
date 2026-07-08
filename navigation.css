@@ -8,16 +8,12 @@ main {
   color: white;
 }
 
-
-
 a {
   color: white;
   text-decoration: none;
 }
 
-div {
-  margin: 10px;
-}
+
 
 header {
   background-color: rgb(2, 7, 20);
