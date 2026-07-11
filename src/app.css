@@ -2,4 +2,32 @@
   display: flex;
   flex-direction: column;
   min-width: 375px;
+  margin: 0;
+  background-color: rgb(2, 31, 41);
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+
+/* link in footer */
+a { 
+  color: black;
+}
+
+
+header {
+    background-color: rgb(2, 7, 20);
+    padding: 10px 20px;
+    color: white;
+}
+
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
