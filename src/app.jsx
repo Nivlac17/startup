@@ -18,10 +18,10 @@ export default function App() {
             <div className="navbar-brand">
                 <h1>Lines of Light<sup>&reg;</sup></h1>
             </div>
-            <nav>
-                <menu className="navbar-nav">
+                <nav>
+                <ul className="nav-menu">
                     <li className="nav-item">
-                        <NavLink className="nav-link active" to="/">
+                        <NavLink className="nav-link" to="/">
                             Home
                         </NavLink>
                     </li>
@@ -40,8 +40,8 @@ export default function App() {
                             Quote
                         </NavLink>
                     </li>
-                </menu>
-            </nav>
+                </ul>
+                </nav>
             <hr />
         </header>
 
