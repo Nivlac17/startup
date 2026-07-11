@@ -87,7 +87,8 @@ button:hover {
   border: 2px solid rgb(0, 5, 7);
   padding: 12px;
   width: 300px;
-  height: 800px;
+  height: 775px;
+  margin-top: 40px;
   border-radius: 8px;
   background-color: white;
   color: black;
