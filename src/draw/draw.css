@@ -1,15 +1,17 @@
-main {
-  flex: 1;
+main.layout {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 10px;
+  min-width: max-content;
 }
 
 
 .g {
   display: grid;
-  grid-template-columns: repeat(60, 20px);
+  grid-template-columns: repeat(60, 17px);
   column-gap: 1.5px;
   row-gap: 1.5px;
   margin: 40px auto 0;
@@ -25,7 +27,7 @@ main {
 
 
 .color-palet {
-  flex: 0 0 300px;
+  flex: 1 1 0;
   align-self: flex-start;
   margin-top: 12%;
 }
@@ -84,35 +86,22 @@ button:hover {
   flex-direction: column;
   border: 2px solid rgb(0, 5, 7);
   padding: 12px;
-  margin-bottom: 10px;
   width: 300px;
-  height: 350px;
+  height: 800px;
   border-radius: 8px;
   background-color: white;
   color: black;
-  margin-right: auto;
-  margin-top: 20px;
-  overflow-y: auto;
 }
 
 .chats {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  justify-content: flex-end;
   overflow-y: auto;
-  border: 2px solid rgb(0, 5, 7);
   border-radius: 8px;
+  height: 100%;
 }
 
-/* body adjustment */
-main { 
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-around;
-  gap: 2rem;
-  padding: 20px;
-}
 
 @media (orientation: portrait) {
   main {

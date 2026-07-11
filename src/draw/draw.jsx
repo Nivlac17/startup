@@ -27,30 +27,30 @@ export function Draw() {
             <div
               key={index}
               className="c"
-              contentEditable={false}
               style={{ background: '#fff' }}
             />
           ))}
         </div>
       </section>
 
-      <div id="chat-box">
-        <div><p>Hello</p></div>
-        <div><p>These are messages!</p></div>
-        <div><p>Try and read these messages!</p></div>
-        <div><p>This is hello from A-a-ron!</p></div>
-        <div><p>Hello</p></div>
+<div id="chat-box">
+  <div className="chats">
+    <div><p>Hello</p></div>
+    <div><p>These are messages!</p></div>
+    <div><p>Try and read these messages!</p></div>
+    <div><p>This is hello from A-a-ron!</p></div>
+    <div><p>Hello</p></div>
+  </div>
 
-        <button>Send</button>
+  <button>Send</button>
 
-        <label htmlFor="count"></label>
-        <input
-          type="text"
-          id="count"
-          value="Message"
-          readOnly
-        />
-      </div>
+  <input
+    type="text"
+    id="count"
+    value="Message"
+    readOnly
+  />
+</div>
     </main>
   );
 }
