@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lines of Light</title>
+  <link rel="icon" href="temple.jpg" />
+  <link rel="stylesheet" href="draw.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Lines of Light<sup>&reg;</sup></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="navigation.html">Artist's Page</a></li>
+        <li><a href="draw.html">Draw</a></li>        
+        <li><a href="quote.html">Quote</a></li>
+      </ul>
+    </nav>
+    <hr />
+  </header>
+
+
+
+  <main class="layout">
+  <aside class="color-palet">
+      <div class="gridcolor">
+        <button style="background: yellow;"></button>
+        <button style="background: blue;"></button>
+        <button style="background: red;"></button>
+        <button style="background: green;"></button>
+        <button style="background: pink;"></button>
+        <button style="background: purple;"></button>
+        <button style="background: grey;"></button>
+        <button style="background: orange;"></button>
+        <button style="background: black;"></button>
+        <button style="background: whitesmoke;"></button>
+      </div>
+    </aside>
+
+
+<section class="art-selection">
+    <title>GridPad</title>
+      <div class="g" id="g"></div>
+
+      <script>
+
+        const g = document.getElementById('g');
+        const CELLS = 1980;
+        const frag = document.createDocumentFragment();
+
+        for (let i = 0; i < CELLS; i++) {
+          const d = document.createElement('div');
+          d.className = 'c';
+          d.contentEditable = 'false';
+          d.style.background = '#fff';
+          frag.appendChild(d);
+        }
+
+        g.appendChild(frag);
+
+      </script>
+
+  </section>
+</main>
+    <br />
+        <div id="chat-box">
+              <div><p>Hello</p></div>
+              <div><p>These are messages!</p></div>
+              <div><p>Try and read these messages!</p></div>
+              <div><p>this is hello from A-a-ron!</p></div>
+              <div><p>Hello</p></div>
+
+        
+            <button>Send</button>
+            <label for="count"></label>
+            <input type="text" id="count" value="Message" readonly />
+        </div>
+    </body>
+
+  <footer>
+    <hr />
+    <span class="text-reset">Calvin Merrell</span><br />
+    <a href="https://github.com/Nivlac17/startup">GitHub</a>
+  </footer>
+</body>
+</html>
