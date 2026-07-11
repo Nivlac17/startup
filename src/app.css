@@ -31,3 +31,10 @@ nav ul {
   align-items: center;
 }
 
+
+
+@media (orientation: portrait) {
+  main {
+    flex-direction: column;
+  }
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import './quote.css';
+
 
 export function Quote() {
   return (
