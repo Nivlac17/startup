@@ -26,17 +26,17 @@ export default function App() {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="navigation">
+                        <NavLink className="nav-link" to="/navigation">
                             Artist's Page
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="draw">
+                        <NavLink className="nav-link" to="/draw">
                             Draw
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="quote">
+                        <NavLink className="nav-link" to="/quote">
                             Quote
                         </NavLink>
                     </li>
