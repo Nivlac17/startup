@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './navigation.css';
 
 export function Navigation() {
+      const navigate = useNavigate();
   return (
     <main>
       <h2>Select an art piece or draw new art!</h2>
@@ -14,11 +16,10 @@ export function Navigation() {
             marginBottom: '10px',
           }}
         >
-          <p>User</p>
-          <button type="button">Art Title</button>
-          <button type="button">Art Title</button>
-          <button type="button">Art Title</button>
-          <button type="button">Art Title</button>
+          <p>Cal</p>
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+
         </div>
 
         <div
@@ -28,11 +29,12 @@ export function Navigation() {
             marginBottom: '10px',
           }}
         >
-          <p>User</p>
-          <button type="button">Art Title</button>
-          <button type="button">Art Title</button>
-          <button type="button">Art Title</button>
-          <button type="button">Art Title</button>
+          <p>Kyle</p>
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+
         </div>
 
         <div
@@ -42,11 +44,13 @@ export function Navigation() {
             marginBottom: '10px',
           }}
         >
-          <p>User</p>
-          <button type="button">Art Title</button>
-          <button type="button">Art Title</button>
-          <button type="button">Art Title</button>
-          <button type="button">Art Title</button>
+          <p>Jane</p>
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+
         </div>
 
         <div
@@ -55,7 +59,7 @@ export function Navigation() {
             padding: '12px',
           }}
         >
-          <button type="button">+</button>
+          <button type="button" onClick={() => navigate('/draw')}>+</button>
           <span> New Art: </span>
           <input type="text" placeholder="Title" />
         </div>
