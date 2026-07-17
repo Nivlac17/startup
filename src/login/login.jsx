@@ -9,7 +9,7 @@ export function Login() {
     <main>
       
       <h1>Welcome to Lines of Light</h1>
-      <form method="get" action="draw.html">
+      <form method="get">
         <div>
           <span>@</span>
           <input type="text" placeholder="your@email.com" />
