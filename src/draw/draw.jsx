@@ -103,6 +103,24 @@ export function Draw() {
     setInputMessage("");
   };
 
+
+  // Temporary fake WebSocket messages--------------------------------------------------------
+useEffect(() => {
+  const interval = setInterval(() => {
+    const userName = `User-${Math.floor(Math.random() * 1000)}`;
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        name: userName,
+        message: "Hello",
+      },
+    ]);
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, []);
+// ---------------------------------------------------------------------------------------
   return (
     <main className="container-fluid layout">
       {/* Color Palette */}
@@ -155,6 +173,7 @@ export function Draw() {
                 sendMessage();
               }
             }}
+            
           />
 
           <button onClick={sendMessage}>Send</button>
