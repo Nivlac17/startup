@@ -18,13 +18,16 @@ export function Login() {
           <span>🔒</span>
           <input type="password" placeholder="password" />
         </div>
-        <button type="button" onClick={() => navigate('/navigation')}>
-          Login
-        </button>
 
-        <button type="button" onClick={() => navigate('/navigation')}>
-          Register
-        </button>
+          <div className="login-buttons">
+          <button type="button" onClick={() => navigate('/navigation')}>
+            Login
+          </button>
+          <button type="button" onClick={() => navigate('/navigation')}>
+            Register
+          </button>
+       </div>
+
       </form>
     </main>
   );
