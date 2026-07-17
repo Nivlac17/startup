@@ -14,17 +14,51 @@ export function Draw() {
   ]);
   const [inputMessage, setInputMessage] = useState("");
 
-  const colors = [
-    "yellow",
-    "blue",
-    "red",
-    "green",
-    "pink",
-    "purple",
-    "grey",
-    "orange",
-    "black",
-    "whitesmoke",
+  const colors = [  // Neutrals
+  "black",
+  "whitesmoke",
+  "silver",
+  "grey",
+  "brown",
+  // Reds / Pinks
+  "red",
+  "crimson",
+  "tomato",
+  "coral",
+  "salmon",
+  "pink",
+  "hotpink",
+  "magenta",
+
+  // Oranges / Yellows
+  "orange",
+  "gold",
+  "yellow",
+  "khaki",
+
+  // Greens
+  "lime",
+  "green",
+  "olive",
+  "teal",
+  "aquamarine",
+  "turquoise",
+
+  // Blues
+  "cyan",
+  "skyblue",
+  "blue",
+  "deepskyblue",
+
+  "navy",
+  "indigo",
+
+  // Purples
+  "purple",
+  "orchid",
+  "violet",
+  "plum"
+
   ];
 
   // Create the drawing grid once
