@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 
 export function Login() {
+    const navigate = useNavigate();
   return (
     <main>
+      
       <h1>Welcome to Lines of Light</h1>
       <form method="get" action="draw.html">
         <div>
@@ -15,9 +18,15 @@ export function Login() {
           <span>🔒</span>
           <input type="password" placeholder="password" />
         </div>
-        <button type="submit">Login</button>
-        <button type="submit">Register</button>
+        <button type="button" onClick={() => navigate('/navigation')}>
+          Login
+        </button>
+
+        <button type="button" onClick={() => navigate('/navigation')}>
+          Register
+        </button>
       </form>
     </main>
   );
 }
+
