@@ -1,119 +1,184 @@
-main.layout {
+/* ---------- Main Layout ---------- */
+
+.layout {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 10px;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 20px;
   min-width: max-content;
+  margin-bottom: 25px;
 }
 
+/* ---------- Canvas ---------- */
+
+.art-selection {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
 .g {
   display: grid;
-  grid-template-columns: repeat(60, 17px);
-  column-gap: 1.5px;
-  row-gap: 1.5px;
-  margin: 40px auto 0;
+  grid-template-columns: repeat(80, 13px);
+  grid-auto-rows: 12px;
+  gap: 1px;
+
+  margin-top: 40px;
+
+  flex-shrink: 0;
+  width: max-content;
+  height: max-content;
 }
 
 .c {
-  aspect-ratio: 1 / 1;
-  display: grid;
-  place-items: center;
+  width: 12px;
+  height: 12px;
+  background: white;
   border-radius: 1px;
+  box-sizing: border-box;
+  user-select: none;
+  transition: background-color 0.05s linear;
 }
 
-
+/* ---------- Color Palette ---------- */
 
 .color-palet {
-  flex: 1 1 0;
-  align-self: flex-start;
-  margin-top: 12%;
+  width: 140px;
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  flex-shrink: 0;
 }
 
 .gridcolor {
   display: grid;
-  grid-template-columns: repeat(2, 50px);
   gap: 10px;
 }
 
 .gridcolor button {
   width: 50px;
   height: 50px;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
 
-footer {
-  flex: 0 0 30px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5em;
-}
-
-form input {
-  padding: 0.5em;
-  font-size: 1em;
-  border-radius: 20px;
-  width: 200px;
-  max-width: 80%;
-}
-
-button {
-  background-color: rgb(49, 99, 224);
-  color: white;
   border: 2px solid black;
-  border-radius: 7px;
-  padding: 0.5em 1em;
-  font-size: 1em;
-  font-weight: 300;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
+  border-radius: 6px;
 }
 
-button:hover {
-  background-color: rgb(85, 94, 117);
+
+.selected-color {
+  outline: 4px solid white;
 }
 
-#chat-box {
+.current-color {
   display: flex;
   flex-direction: column;
-  border: 2px solid rgb(0, 5, 7);
-  padding: 12px;
-  width: 300px;
-  height: 775px;
-  margin-top: 40px;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.color-preview {
+  width: 60px;
+  height: 60px;
+
+  border: 3px solid white;
   border-radius: 8px;
-  background-color: white;
+
+  margin-top: 10px;
+}
+
+/* ---------- Chat ---------- */
+
+.chat-box {
+  width: 300px;
+  height: 560px;
+
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: white;
   color: black;
+
+  border: 2px solid rgb(0, 5, 7);
+  border-radius: 8px;
+
+  flex-shrink: 0;
 }
 
 .chats {
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: 12px;
+
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  overflow-y: auto;
-  border-radius: 8px;
-  height: 100%;
+  gap: 10px;
 }
 
+.chat-message {
+  padding: 8px 10px;
 
-@media (orientation: portrait) {
-  main {
-    flex-direction: none;
-  }
+  background: rgb(238, 238, 238);
 
-  .color-palet {
-    margin-top: 20px;
-  }
+  border-radius: 6px;
 
-  .g {
-    grid-template-columns: repeat(20, 20px);
+  word-wrap: break-word;
+}
+
+.sender {
+  display: flex;
+  gap: 10px;
+
+  padding: 10px;
+
+  border-top: 1px solid lightgray;
+}
+
+.sender input {
+  flex: 1;
+
+  padding: 8px 12px;
+
+  border: 1px solid gray;
+  border-radius: 6px;
+
+  outline: none;
+}
+
+.sender input:focus {
+  border-color: rgb(49, 99, 224);
+}
+
+.sender button {
+  padding: 8px 18px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: rgb(49, 99, 224);
+  color: white;
+
+  cursor: pointer;
+}
+
+.sender button:hover {
+  background: rgb(85, 94, 117);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1200px) {
+  .layout {
+    justify-content: flex-start;
+    overflow-x: auto;
   }
 }
