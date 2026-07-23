@@ -1,35 +1,26 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './login.css';
 
+import { Unauthenticated } from './unauthenticated';
+import { Authenticated } from './authenticated';
+import { AuthState } from './authState';
 
-export function Login() {
-    const navigate = useNavigate();
+export function Login({ userName, authState, onAuthChange }) {
   return (
-    <main>
-      
-      <h1>Welcome to Lines of Light</h1>
-      <form method="get">
-        <div>
-          <span>@</span>
-          <input type="text" placeholder="your@email.com" />
-        </div>
-        <div>
-          <span>🔒</span>
-          <input type="password" placeholder="password" />
-        </div>
-
-          <div className="login-buttons">
-          <button type="button" onClick={() => navigate('/navigation')}>
-            Login
-          </button>
-          <button type="button" onClick={() => navigate('/navigation')}>
-            Register
-          </button>
-       </div>
-
-      </form>
+     <main className="container-fluid ">
+      <div>
+        {authState !== AuthState.Unknown && <h1>Lines of Light</h1>}
+        {authState === AuthState.Authenticated && (
+          <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
+        )}
+        {authState === AuthState.Unauthenticated && (
+          <Unauthenticated
+            userName={userName}
+            onLogin={(loginUserName) => {
+              onAuthChange(loginUserName, AuthState.Authenticated);
+            }}
+          />
+        )}
+      </div>
     </main>
   );
 }
-

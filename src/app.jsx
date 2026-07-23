@@ -6,11 +6,19 @@ import './app.css';
 
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
+import { AuthState } from './login/authState';
 import { Draw } from './draw/draw';
+
 import { Navigation } from './navigation/navigation';
 import { Quote } from './quote/quote';
 
+
 export default function App() {
+
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+    const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+    const [authState, setAuthState] = React.useState(currentAuthState);
+
     return (
     <BrowserRouter>
      <div className='app'> 
@@ -46,7 +54,20 @@ export default function App() {
         </header>
 
             <Routes>
-                    <Route path='/' element={<Login />} exact />
+                    <Route
+                        path='/'
+                        element={
+                        <Login
+                            userName={userName}
+                            authState={authState}
+                            onAuthChange={(userName, authState) => {
+                            setAuthState(authState);
+                            setUserName(userName);
+                            }}
+                        />
+                        }
+                        exact
+                    />
                     <Route path='/draw' element={<Draw />} />
                     <Route path='/navigation' element={<Navigation />} />
                     <Route path='/quote' element={<Quote />} />
