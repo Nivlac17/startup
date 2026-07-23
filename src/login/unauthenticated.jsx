@@ -17,25 +17,50 @@ export function Unauthenticated(props) {
   }
 
   async function loginOrCreate(endpoint) {
-    try {
-      const response = await fetch(endpoint, {
-        method: 'post',
-        body: JSON.stringify({ email: userName, password: password }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      });
-      if (response?.status === 200) {
-        localStorage.setItem('userName', userName);
-        props.onLogin(userName);
-      } else {
-        const body = await response.json();
-        setDisplayError(`⚠ Error: ${body.msg}`);
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: JSON.stringify({
+            email: userName,
+            password,
+          }),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+        });
+
+        const responseText = await response.text();
+
+        console.log('Auth response:', {
+          url: response.url,
+          status: response.status,
+          contentType: response.headers.get('content-type'),
+          body: responseText,
+        });
+
+        if (response.ok) {
+          localStorage.setItem('userName', userName);
+          props.onLogin(userName);
+          return;
+        }
+
+        let message = `Request failed with status ${response.status}`;
+
+        if (responseText) {
+          try {
+            const body = JSON.parse(responseText);
+            message = body.msg || message;
+          } catch {
+            message = responseText;
+          }
+        }
+
+        setDisplayError(`⚠ Error: ${message}`);
+      } catch (error) {
+        console.error('Authentication request failed:', error);
+        setDisplayError(`⚠ Request failed: ${error.message}`);
       }
-    } catch (e) {
-    setDisplayError('⚠ Network error: is the API running on :4000?');
     }
-  }
 
   return (
     <>

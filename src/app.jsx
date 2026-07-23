@@ -28,26 +28,31 @@ export default function App() {
             </div>
                 <nav>
                 <ul className="nav-menu">
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/">
-                            Home
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/navigation">
-                            Artist's Page
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/draw">
-                            Draw
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/quote">
-                            Quote
-                        </NavLink>
-                    </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link active" to="/">
+                                Login
+                            </NavLink>
+                        </li>
+                        {authState === AuthState.Authenticated && (
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="navigation">
+                                    Artist's Page
+                                </NavLink>
+                            </li>
+                        )}
+                        {authState === AuthState.Authenticated && (
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="draw">
+                                Draw
+                            </NavLink>
+                        </li>
+                        )}
+    
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="quote">
+                                Quote
+                            </NavLink>
+                        </li>
                 </ul>
                 </nav>
             <hr />
@@ -88,4 +93,4 @@ export default function App() {
 
 function NotFound(){
     return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
-}
+} 
