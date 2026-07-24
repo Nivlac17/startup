@@ -14,53 +14,6 @@ export function Watch() {
   ]);
   const [inputMessage, setInputMessage] = useState("");
 
-  const colors = [  // Neutrals
-  "black",
-  "whitesmoke",
-  "silver",
-  "grey",
-  "brown",
-  // Reds / Pinks
-  "red",
-  "crimson",
-  "tomato",
-  "coral",
-  "salmon",
-  "pink",
-  "hotpink",
-  "magenta",
-
-  // Oranges / Yellows
-  "orange",
-  "gold",
-  "yellow",
-  "khaki",
-
-  // Greens
-  "lime",
-  "green",
-  "olive",
-  "teal",
-  "aquamarine",
-  "turquoise",
-
-  // Blues
-  "cyan",
-  "skyblue",
-  "blue",
-  "deepskyblue",
-
-  "navy",
-  "indigo",
-
-  // Purples
-  "purple",
-  "orchid",
-  "violet",
-  "plum"
-
-  ];
-
   // Create the drawing grid once
   useEffect(() => {
     const grid = gridRef.current;
@@ -77,42 +30,42 @@ export function Watch() {
     grid.appendChild(fragment);
   }, []);
 
-  // Drawing functionality
-  useEffect(() => {
-    const grid = gridRef.current;
-    if (!grid) return;
+//   // Drawing functionality
+//   useEffect(() => {
+//     const grid = gridRef.current;
+//     if (!grid) return;
 
-    const paint = (event) => {
-      if (event.target.classList.contains("c")) {
-        event.target.style.backgroundColor = selectedColor;
-      }
-    };
+//     const paint = (event) => {
+//       if (event.target.classList.contains("c")) {
+//         event.target.style.backgroundColor = selectedColor;
+//       }
+//     };
 
-    const handleMouseDown = (event) => {
-      isDrawing.current = true;
-      paint(event);
-    };
+//     const handleMouseDown = (event) => {
+//       isDrawing.current = true;
+//       paint(event);
+//     };
 
-    const handleMouseMove = (event) => {
-      if (isDrawing.current) {
-        paint(event);
-      }
-    };
+//     const handleMouseMove = (event) => {
+//       if (isDrawing.current) {
+//         paint(event);
+//       }
+//     };
 
-    const handleMouseUp = () => {
-      isDrawing.current = false;
-    };
+//     const handleMouseUp = () => {
+//       isDrawing.current = false;
+//     };
 
-    grid.addEventListener("mousedown", handleMouseDown);
-    grid.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
+//     grid.addEventListener("mousedown", handleMouseDown);
+//     grid.addEventListener("mousemove", handleMouseMove);
+//     document.addEventListener("mouseup", handleMouseUp);
 
-    return () => {
-      grid.removeEventListener("mousedown", handleMouseDown);
-      grid.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [selectedColor]);
+//     return () => {
+//       grid.removeEventListener("mousedown", handleMouseDown);
+//       grid.removeEventListener("mousemove", handleMouseMove);
+//       document.removeEventListener("mouseup", handleMouseUp);
+//     };
+//   }, [selectedColor]);
 
   // Auto-scroll chat to newest message
   useEffect(() => {
@@ -157,29 +110,6 @@ useEffect(() => {
 // ---------------------------------------------------------------------------------------
   return (
     <main className="container-fluid layout">
-      {/* Color Palette */}
-      <aside className="color-palet">
-        <div className="gridcolor">
-          {colors.map((color) => (
-            <button
-              key={color}
-              className={selectedColor === color ? "selected-color" : ""}
-              style={{ backgroundColor: color }}
-              onClick={() => setSelectedColor(color)}
-              title={color}
-            />
-          ))}
-        </div>
-
-        <div className="current-color">
-          <p>Current Color</p>
-          <div
-            className="color-preview"
-            style={{ backgroundColor: selectedColor }}
-          />
-        </div>
-      </aside>
-
       {/* Canvas */}
       <section className="art-selection">
         <div className="g" ref={gridRef}></div>
