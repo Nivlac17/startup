@@ -75,7 +75,7 @@ export function Unauthenticated(props) {
           Login
         </Button>
         <Button className='mb-4 ms-4' variant='secondary' onClick={() => createUser()} disabled={!userName || !password}>
-          Create
+          Register
         </Button>
       </div>
 
