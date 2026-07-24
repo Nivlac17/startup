@@ -8,7 +8,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { AuthState } from './login/authState';
 import { Draw } from './draw/draw';
-
+import { Watch } from './draw/watch';
 import { Navigation } from './navigation/navigation';
 import { Quote } from './quote/quote';
 
@@ -47,6 +47,8 @@ export default function App() {
                             </NavLink>
                         </li>
                         )}
+
+
     
                         <li className="nav-item">
                             <NavLink className="nav-link" to="quote">
@@ -74,6 +76,7 @@ export default function App() {
                         exact
                     />
                     <Route path='/draw' element={<Draw />} />
+                    <Route path='/watch' element={<Watch />} />
                     <Route path='/navigation' element={<Navigation />} />
                     <Route path='/quote' element={<Quote />} />
                     <Route path='*' element={<NotFound />} />

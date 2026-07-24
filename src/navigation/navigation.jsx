@@ -17,8 +17,8 @@ export function Navigation() {
           }}
         >
           <p>Cal</p>
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
 
         </div>
 
@@ -30,10 +30,10 @@ export function Navigation() {
           }}
         >
           <p>Kyle</p>
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
 
         </div>
 
@@ -45,11 +45,11 @@ export function Navigation() {
           }}
         >
           <p>Jane</p>
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
-          <button type="button" onClick={() => navigate('/draw')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
+          <button type="button" onClick={() => navigate('/watch')}>Art Title</button> 
 
         </div>
 
