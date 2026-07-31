@@ -102,16 +102,16 @@ apiRouter.post('/art', async (req, res) => {
 });
 
 
-// // Get all art from database for Navigation page
-// apiRouter.get('/portfolio/all', verifyAuth, async (req, res) => {
-//   try {
-//     const art = await DB.getAllArt();
-//     res.send(art);
-//   } catch (err) {
-//     console.error('Error fetching all art:', err);
-//     res.status(500).send({ msg: 'Server error' });
-//   }
-// });
+// Get all art from database for Navigation page
+apiRouter.get('/portfolio/all', verifyAuth, async (req, res) => {
+  try {
+    const art = await DB.getAllArt();
+    res.send(art);
+  } catch (err) {
+    console.error('Error fetching all art:', err);
+    res.status(500).send({ msg: 'Server error' });
+  }
+});
 
 
 

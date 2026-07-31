@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import "./draw.css";
 
 export function Draw() {
   const gridRef = useRef(null);
   const chatRef = useRef(null);
   const isDrawing = useRef(false);
+  const location = useLocation();
+  const artTitle = location.state?.artTitle || "Untitled";
 
   const CELLS = 4560;
 
@@ -164,7 +168,7 @@ export function Draw() {
           },
           body: JSON.stringify({
             userName: 'Calvin',
-            title: "My Artwork",
+            title: artTitle,
             artCsv: artCsv,
           }),
         });

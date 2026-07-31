@@ -51,17 +51,17 @@ async function addArt({ userName, title, artCsv }) {
 }
 
 
-// async function getArtByUser(userName) {
-//   return artPortfolio.find({ userName }).toArray();
-// }
+async function getArtByUser(userName) {
+  return artPortfolio.find({ userName }).toArray();
+}
 
-// async function getArtByUserAndTitle(userName, title) {
-//   return artPortfolio.findOne({ userName, title });
-// }
+async function getArtByUserAndTitle(userName, title) {
+  return artPortfolio.findOne({ userName, title });
+}
 
-// async function getAllArt() {
-//   return artPortfolio.find({}).toArray();
-// }
+async function getAllArt() {
+  return artPortfolio.find({}).toArray();
+}
 
 
 
@@ -71,7 +71,7 @@ module.exports = {
   addUser,
   updateUser,
   addArt,
-//   getArtByUser,
-//   getArtByUserAndTitle,
-//   getAllArt,
+  getArtByUser,
+  getArtByUserAndTitle,
+  getAllArt,
 };
