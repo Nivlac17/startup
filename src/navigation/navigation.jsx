@@ -24,7 +24,7 @@ export function Navigation() {
     const title = newArtName.trim();
 
     if (!title) {
-      setError("Enter a title for your artwork.");
+      setError("Every great piece of art deserves a name, enter a title for your artwork.");
       return;
     }
 
@@ -57,7 +57,7 @@ export function Navigation() {
         setPortfolio(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Error loading portfolio:", err);
-        setError(err.message || "Could not load the portfolio.");
+        setError(err.message || "No Art For YOU! sorry.");
       } finally {
         setLoading(false);
       }
@@ -85,12 +85,12 @@ export function Navigation() {
     <main className="navigation-page">
       <h2>Select an art piece or draw new art!</h2>
 
-      {loading && <p>Loading artwork...</p>}
+      {loading && <p>Loading artwork... "I'm quite ready for another adventure!"</p>}
 
       {error && <p className="navigation-error">{error}</p>}
 
       {!loading && !error && portfolio.length === 0 && (
-        <p>No artwork has been saved yet.</p>
+        <p>Congrats! You are the first artist on this server!</p>
       )}
 
       <div className="art-card">

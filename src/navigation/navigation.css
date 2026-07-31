@@ -92,14 +92,14 @@ button:hover {
 }
 
 .user-art-group {
-  border: 2px solid #333;
+  border: 2px solid #000000;
   border-radius: 10px;
   padding: 16px;
   margin-bottom: 16px;
 }
 
-.user-art-group h3 {
+/* .user-art-group h3 {
   margin-top: 0;
   padding-bottom: 8px;
   border-bottom: 1px solid #ccc;
-}
+} */

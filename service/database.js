@@ -7,7 +7,7 @@ const db = client.db('startup');
 const userCollection = db.collection('user');
 const artPortfolio = db.collection('portfolio');
 
-// This will asynchronously test the connection and exit the process if it fails
+// Check this message for local dev logging
 (async function testConnection() {
   try {
     await db.command({ ping: 1 });

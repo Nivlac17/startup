@@ -75,11 +75,9 @@ export function Watch() {
 
   const sendMessage = () => {
     const text = inputMessage.trim();
-
     if (!text) {
       return;
     }
-
     setMessages((previousMessages) => [
       ...previousMessages,
       {
@@ -95,14 +93,14 @@ export function Watch() {
   if (!title && !artCsv) {
     return (
       <main className="watch-error">
-        <h2>No artwork selected</h2>
+        <h2>Sorry, no artwork was selected! What do you want from me?????</h2>
 
         <p>
-          Return to the portfolio and select an artwork to view.
+          Return to the Artist's page and select an artwork to view.
         </p>
 
-        <button type="button" onClick={() => navigate("/")}>
-          Back to portfolio
+        <button type="button" onClick={() => navigate("/navigation")}>
+          Back to Artist's Page
         </button>
       </main>
     );

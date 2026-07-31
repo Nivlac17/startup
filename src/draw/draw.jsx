@@ -9,7 +9,7 @@ export function Draw() {
   const isDrawing = useRef(false);
   const location = useLocation();
   const artTitle = location.state?.artTitle || "Untitled";
-  const userName = location.state?.userName || localStorage.getItem("userName") || "Unknown";
+  const userName = localStorage.getItem("userName") || "Unknown";
   const CELLS = 4560;
 
   const [selectedColor, setSelectedColor] = useState("black");
