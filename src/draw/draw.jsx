@@ -9,7 +9,7 @@ export function Draw() {
   const isDrawing = useRef(false);
   const location = useLocation();
   const artTitle = location.state?.artTitle || "Untitled";
-
+  const userName = location.state?.userName || localStorage.getItem("userName") || "Unknown";
   const CELLS = 4560;
 
   const [selectedColor, setSelectedColor] = useState("black");
@@ -167,7 +167,7 @@ export function Draw() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            userName: 'Calvin2',
+            userName,
             title: artTitle,
             artCsv: artCsv,
           }),
@@ -189,12 +189,12 @@ export function Draw() {
   // Temporary fake WebSocket messages--------------------------------------------------------
 useEffect(() => {
   const interval = setInterval(() => {
-    const userName = `User-${Math.floor(Math.random() * 1000)}`;
+    const userNameWS = `User-${Math.floor(Math.random() * 1000)}`;
 
     setMessages((prev) => [
       ...prev,
       {
-        name: userName,
+        name: userNameWS,
         message: "Hello",
       },
     ]);

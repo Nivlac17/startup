@@ -1,73 +1,72 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./draw.css";
 
 export function Watch() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const gridRef = useRef(null);
   const chatRef = useRef(null);
-  const isDrawing = useRef(false);
 
   const CELLS = 4560;
 
-  const [selectedColor, setSelectedColor] = useState("black");
   const [messages, setMessages] = useState([
-    { name: "System", message: "Welcome to Lines of Light!" },
+    {
+      name: "System",
+      message: "Welcome to Lines of Light!",
+    },
   ]);
+
   const [inputMessage, setInputMessage] = useState("");
 
-  // Create the drawing grid once
+  const artwork = location.state || {};
+  const { userName, title, artCsv } = artwork;
+
+  // Convert the saved CSV string into an array of cell colors.
+  const parseArtCsv = (csv) => {
+    if (!csv || typeof csv !== "string") {
+      return [];
+    }
+
+    return csv
+      .split(/[\n,]/)
+      .map((color) => color.trim())
+      .filter((color) => color.length > 0);
+  };
+
+  // Build the grid and apply the saved artwork.
   useEffect(() => {
     const grid = gridRef.current;
-    if (!grid) return;
 
+    if (!grid) {
+      return;
+    }
+
+    // Prevent duplicate cells during React development mode.
+    grid.replaceChildren();
+
+    const savedColors = parseArtCsv(artCsv);
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < CELLS; i++) {
       const cell = document.createElement("div");
+
       cell.className = "c";
+
+      const savedColor = savedColors[i];
+
+      if (savedColor) {
+        cell.style.backgroundColor = savedColor;
+      }
+
       fragment.appendChild(cell);
     }
 
     grid.appendChild(fragment);
-  }, []);
+  }, [artCsv]);
 
-//   // Drawing functionality
-//   useEffect(() => {
-//     const grid = gridRef.current;
-//     if (!grid) return;
-
-//     const paint = (event) => {
-//       if (event.target.classList.contains("c")) {
-//         event.target.style.backgroundColor = selectedColor;
-//       }
-//     };
-
-//     const handleMouseDown = (event) => {
-//       isDrawing.current = true;
-//       paint(event);
-//     };
-
-//     const handleMouseMove = (event) => {
-//       if (isDrawing.current) {
-//         paint(event);
-//       }
-//     };
-
-//     const handleMouseUp = () => {
-//       isDrawing.current = false;
-//     };
-
-//     grid.addEventListener("mousedown", handleMouseDown);
-//     grid.addEventListener("mousemove", handleMouseMove);
-//     document.addEventListener("mouseup", handleMouseUp);
-
-//     return () => {
-//       grid.removeEventListener("mousedown", handleMouseDown);
-//       grid.removeEventListener("mousemove", handleMouseMove);
-//       document.removeEventListener("mouseup", handleMouseUp);
-//     };
-//   }, [selectedColor]);
-
-  // Auto-scroll chat to newest message
+  // Auto-scroll to the newest chat message.
   useEffect(() => {
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
@@ -77,10 +76,12 @@ export function Watch() {
   const sendMessage = () => {
     const text = inputMessage.trim();
 
-    if (!text) return;
+    if (!text) {
+      return;
+    }
 
-    setMessages((prev) => [
-      ...prev,
+    setMessages((previousMessages) => [
+      ...previousMessages,
       {
         name: "Me",
         message: text,
@@ -90,38 +91,62 @@ export function Watch() {
     setInputMessage("");
   };
 
+  // Handle refreshing or directly opening /watch.
+  if (!title && !artCsv) {
+    return (
+      <main className="watch-error">
+        <h2>No artwork selected</h2>
 
-  // Temporary fake WebSocket messages--------------------------------------------------------
-useEffect(() => {
-  const interval = setInterval(() => {
-    const userName = `User-${Math.floor(Math.random() * 1000)}`;
+        <p>
+          Return to the portfolio and select an artwork to view.
+        </p>
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        name: userName,
-        message: "Hello",
-      },
-    ]);
-  }, 1000);
+        <button type="button" onClick={() => navigate("/")}>
+          Back to portfolio
+        </button>
+      </main>
+    );
+  }
 
-  return () => clearInterval(interval);
-}, []);
-// ---------------------------------------------------------------------------------------
   return (
     <main className="container-fluid layout">
-      {/* Canvas */}
       <section className="art-selection">
-        <div className="g" ref={gridRef}></div>
+        <header className="watch-heading">
+          <div>
+            <h2>{title || "Untitled"}</h2>
+
+            <p>
+              Created by{" "}
+              {userName
+                ? userName.split("@")[0]
+                : "Unknown artist"}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+          >
+            Back
+          </button>
+        </header>
+
+        <div
+          className="g watch-grid"
+          ref={gridRef}
+          aria-label={`Artwork titled ${title || "Untitled"}`}
+        />
       </section>
 
-      {/* Chat */}
       <aside className="chat-box">
         <div className="chats" ref={chatRef}>
           {messages.map((message, index) => (
-            <div className="chat-message" key={index}>
+            <div
+              className="chat-message"
+              key={`${message.name}-${index}`}
+            >
               <strong>{message.name}: </strong>
-              {message.message}
+              <span>{message.message}</span>
             </div>
           ))}
         </div>
@@ -131,16 +156,20 @@ useEffect(() => {
             type="text"
             placeholder="Message..."
             value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
+            onChange={(event) =>
+              setInputMessage(event.target.value)
+            }
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
                 sendMessage();
               }
             }}
-            
+            aria-label="Chat message"
           />
 
-          <button onClick={sendMessage}>Send</button>
+          <button type="button" onClick={sendMessage}>
+            Send
+          </button>
         </div>
       </aside>
     </main>
