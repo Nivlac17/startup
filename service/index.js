@@ -4,23 +4,18 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const authCookieName = 'token'; 
+const DB = require('./database.js');
+// const { chatWebsocket } = require('./chatWebsocket.js');
 
-
-// The scores and users are saved in memory and disappear whenever the service is restarted.
-let users = [];
 
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
-
 // JSON body parsing using built-in middleware
 app.use(express.json());
-
 // Use the cookie parser middleware for tracking authentication tokens
 app.use(cookieParser());
-
 // Serve up the front-end static content hosting
 app.use(express.static('public'));
-
 // Router for service endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
@@ -45,6 +40,7 @@ apiRouter.post('/auth/login', async (req, res) => {
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
+      await DB.updateUser(user);
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
@@ -53,11 +49,12 @@ apiRouter.post('/auth/login', async (req, res) => {
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
-// DeleteAuth logout a user
+// DeleteAuth cookie
 apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
     delete user.token;
+    await DB.updateUser(user);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
@@ -73,12 +70,51 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
+
+
+// Navigation apis
 apiRouter.get('/navigation', verifyAuth, async (req, res) => {
   res.send([
     { name: 'Draw', path: '/draw' },
     { name: 'Watch', path: '/watch' },
   ]);
 });
+
+
+
+// // Saving Art to Database
+// apiRouter.post('/portfolio', verifyAuth, async (req, res) => {
+//   try {
+//     const user = await findUser('token', req.cookies[authCookieName]);
+//     if (!user) {
+//       return res.status(401).send({ msg: 'Unauthorized' });
+//     }
+//     const { title, artCsv } = req.body;
+//     if (!title || !artCsv) {
+//       return res.status(400).send({ msg: 'title and artCsv are required' });
+//     }
+//     await DB.addArt({userName: user.email,title,artCsv,});
+//     res.status(201).send({ msg: 'Art saved successfully' });
+//   } catch (err) {
+//     console.error('Error saving art:', err);
+//     res.status(500).send({ msg: 'Server error' });
+//   }
+// });
+
+
+// // Get all art from database for Navigation page
+// apiRouter.get('/portfolio/all', verifyAuth, async (req, res) => {
+//   try {
+//     const art = await DB.getAllArt();
+//     res.send(art);
+//   } catch (err) {
+//     console.error('Error fetching all art:', err);
+//     res.status(500).send({ msg: 'Server error' });
+//   }
+// });
+
+
+
 
 // Default error handler
 app.use(function (err, req, res, next) {
@@ -100,7 +136,7 @@ async function createUser(email, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
+  await DB.addUser(user);
 
   return user;
 }
@@ -108,8 +144,12 @@ async function createUser(email, password) {
 async function findUser(field, value) {
   if (!value) return null;
 
-  return users.find((u) => u[field] === value);
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value);
 }
+
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
@@ -121,6 +161,8 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+// chatWebsocket(httpService);
