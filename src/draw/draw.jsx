@@ -203,6 +203,8 @@ useEffect(() => {
     <main className="container-fluid layout">
       {/* Color Palette */}
       <aside className="color-palet">
+         <button onClick={saveArt}>Save Art</button>
+
         <div className="gridcolor">
           {colors.map((color) => (
             <button
@@ -215,13 +217,14 @@ useEffect(() => {
           ))}
         </div>
 
-        <div className="current-color">
+        {/* <div className="current-color">
           <p>Current Color</p>
           <div
             className="color-preview"
             style={{ backgroundColor: selectedColor }}
           />
-        </div>
+        </div> */}
+
       </aside>
 
 
@@ -258,7 +261,6 @@ useEffect(() => {
           <button onClick={sendMessage}>Send</button>
         </div>
         
-              <button onClick={saveArt}>Save Art</button>
 
       </aside>
       
