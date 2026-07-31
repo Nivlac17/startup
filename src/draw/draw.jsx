@@ -163,7 +163,7 @@ export function Draw() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            userName: userName,
+            userName: 'Calvin',
             title: "My Artwork",
             artCsv: artCsv,
           }),
@@ -181,7 +181,7 @@ export function Draw() {
     };
 
 
-    
+
   // Temporary fake WebSocket messages--------------------------------------------------------
 useEffect(() => {
   const interval = setInterval(() => {
