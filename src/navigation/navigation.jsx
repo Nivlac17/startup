@@ -41,6 +41,7 @@ export function Navigation() {
         setLoading(true);
         setError("");
 
+        
         const response = await fetch("/api/portfolio/all");
 
         if (!response.ok) {
