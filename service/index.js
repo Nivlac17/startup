@@ -5,7 +5,6 @@ const uuid = require('uuid');
 const app = express();
 const authCookieName = 'token'; 
 const DB = require('./database.js');
-// const { chatWebsocket } = require('./chatWebsocket.js');
 
 
 
@@ -82,24 +81,25 @@ apiRouter.get('/navigation', verifyAuth, async (req, res) => {
 
 
 
-// // Saving Art to Database
-// apiRouter.post('/portfolio', verifyAuth, async (req, res) => {
-//   try {
-//     const user = await findUser('token', req.cookies[authCookieName]);
-//     if (!user) {
-//       return res.status(401).send({ msg: 'Unauthorized' });
-//     }
-//     const { title, artCsv } = req.body;
-//     if (!title || !artCsv) {
-//       return res.status(400).send({ msg: 'title and artCsv are required' });
-//     }
-//     await DB.addArt({userName: user.email,title,artCsv,});
-//     res.status(201).send({ msg: 'Art saved successfully' });
-//   } catch (err) {
-//     console.error('Error saving art:', err);
-//     res.status(500).send({ msg: 'Server error' });
-//   }
-// });
+apiRouter.post('/art', async (req, res) => {
+  try {
+    const { userName, title, artCsv } = req.body;
+
+    await DB.addArt({
+      userName,
+      title,
+      artCsv,
+    });
+
+    res.status(201).send({ message: 'Artwork saved' });
+  } catch (error) {
+    console.error('Error saving artwork:', error);
+    res.status(500).send({ 
+      msg: 'Failed to save artwork',
+      error: error.message
+    });
+  }
+});
 
 
 // // Get all art from database for Navigation page
@@ -165,4 +165,3 @@ const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-// chatWebsocket(httpService);

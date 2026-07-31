@@ -34,21 +34,21 @@ async function updateUser(user) {
   await userCollection.updateOne({ email: user.email }, { $set: user });
 }
 
-// async function addArt({ userName, title, artCsv }) {
-//   return artPortfolio.updateOne(
-//     { userName, title },
-//     {
-//       $set: {
-//         artCsv,
-//         updated: new Date(),
-//       },
-//       $setOnInsert: {
-//         created: new Date(),
-//       },
-//     },
-//     { upsert: true }
-//   );
-// }
+async function addArt({ userName, title, artCsv }) {
+  return artPortfolio.updateOne(
+    { userName, title },
+    {
+      $set: {
+        artCsv,
+        updated: new Date(),
+      },
+      $setOnInsert: {
+        created: new Date(),
+      },
+    },
+    { upsert: true }
+  );
+}
 
 
 // async function getArtByUser(userName) {
@@ -70,7 +70,7 @@ module.exports = {
   getUserByToken,
   addUser,
   updateUser,
-//   addArt,
+  addArt,
 //   getArtByUser,
 //   getArtByUserAndTitle,
 //   getAllArt,

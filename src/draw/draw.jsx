@@ -138,6 +138,50 @@ export function Draw() {
   };
 
 
+   const saveArt = async () => {
+      const cells = gridRef.current.querySelectorAll(".c");
+
+      const colors = Array.from(cells).map(
+        (cell) => cell.style.backgroundColor || "white"
+      );
+
+      // Your grid is 80 columns wide
+      const columns = 80;
+
+      const rows = [];
+
+      for (let i = 0; i < colors.length; i += columns) {
+        rows.push(colors.slice(i, i + columns).join(","));
+      }
+
+      const artCsv = rows.join("\n");
+
+      try {
+        const response = await fetch("/api/art", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userName: userName,
+            title: "My Artwork",
+            artCsv: artCsv,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to save artwork");
+        }
+
+        alert("Artwork saved!");
+      } catch (error) {
+        console.error("Error saving artwork:", error);
+        alert("Could not save artwork.");
+      }
+    };
+
+
+    
   // Temporary fake WebSocket messages--------------------------------------------------------
 useEffect(() => {
   const interval = setInterval(() => {
@@ -180,6 +224,7 @@ useEffect(() => {
         </div>
       </aside>
 
+
       {/* Canvas */}
       <section className="art-selection">
         <div className="g" ref={gridRef}></div>
@@ -212,7 +257,11 @@ useEffect(() => {
 
           <button onClick={sendMessage}>Send</button>
         </div>
+        
+              <button onClick={saveArt}>Save Art</button>
+
       </aside>
+      
     </main>
   );
 }
