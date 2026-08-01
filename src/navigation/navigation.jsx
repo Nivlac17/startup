@@ -94,33 +94,14 @@ export function Navigation() {
       )}
 
       <div className="art-card">
-        {Object.entries(groupedByUser).map(([displayName, artworks]) => (
-          <section className="user-art-group" key={displayName}>
-            <h3>{displayName}</h3>
 
-            <div className="art-buttons">
-              {artworks.map((art) => (
-                <button
-                  type="button"
-                  key={art._id || `${art.userName}-${art.title}`}
-                  onClick={() => viewArt(art)}
-                >
-                  {art.title || "Untitled"}
-                </button>
-              ))}
-            </div>
-          </section>
-        ))}
-
-        <section className="new-art-section">
+          <section className="new-art-section">
           <button
             type="button"
             className="new-art-button"
             onClick={drawArt}
             aria-label="Create new artwork"
-          >
-            +
-          </button>
+          >+</button>
 
           <label htmlFor="new-art-title">New Art:</label>
 
@@ -140,6 +121,27 @@ export function Navigation() {
             }}
           />
         </section>
+
+
+        {Object.entries(groupedByUser).map(([displayName, artworks]) => (
+          <section className="user-art-group" key={displayName}>
+            <h3>{displayName}</h3>
+
+            <div className="art-buttons">
+              {artworks.map((art) => (
+                <button
+                  type="button"
+                  key={art._id || `${art.userName}-${art.title}`}
+                  onClick={() => viewArt(art)}
+                >
+                  {art.title || "Untitled"}
+                </button>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        
       </div>
     </main>
   );

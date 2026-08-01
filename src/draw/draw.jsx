@@ -142,47 +142,65 @@ export function Draw() {
   };
 
 
-   const saveArt = async () => {
-      const cells = gridRef.current.querySelectorAll(".c");
+    const saveArt = async () => {
+        const cells = gridRef.current.querySelectorAll(".c");
 
-      const colors = Array.from(cells).map(
-        (cell) => cell.style.backgroundColor || "white"
-      );
+        const colors = Array.from(cells).map(
+          (cell) => cell.style.backgroundColor || "white"
+        );
 
-      // Your grid is 80 columns wide
-      const columns = 80;
+        const columns = 80;
+        const rows = [];
 
-      const rows = [];
-
-      for (let i = 0; i < colors.length; i += columns) {
-        rows.push(colors.slice(i, i + columns).join(","));
-      }
-
-      const artCsv = rows.join("\n");
-
-      try {
-        const response = await fetch("/api/art", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userName,
-            title: artTitle,
-            artCsv: artCsv,
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to save artwork");
+        for (let i = 0; i < colors.length; i += columns) {
+          rows.push(colors.slice(i, i + columns).join(","));
         }
 
-        alert("Artwork saved!");
-      } catch (error) {
-        console.error("Error saving artwork:", error);
-        alert("Could not save artwork.");
-      }
-    };
+        const artCsv = rows.join("\n");
+
+        try {
+          let title = artTitle;
+
+          // Ask for a name if the artwork is currently untitled
+          if (title === "Untitled") {
+            const newTitle = window.prompt("What would you like to name your artwork?");
+
+            // User clicked Cancel
+            if (newTitle === null) {
+              return;
+            }
+
+            // Don't allow an empty name
+            if (newTitle.trim() === "") {
+              alert("Please enter a name for your artwork.");
+              return;
+            }
+
+            title = newTitle.trim();
+          }
+
+          const response = await fetch("/api/art", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userName,
+              title: title,
+              artCsv: artCsv,
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to save artwork");
+          }
+
+          alert("Artwork saved!");
+        } catch (error) {
+          console.error("Error saving artwork:", error);
+          alert("Could not save artwork.");
+        }
+      };
 
 
 
