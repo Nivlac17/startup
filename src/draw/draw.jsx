@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useArtworkChat } from "./useArtworkChat";
 
 import "./draw.css";
 
@@ -8,14 +9,14 @@ export function Draw() {
   const chatRef = useRef(null);
   const isDrawing = useRef(false);
   const location = useLocation();
+
   const artTitle = location.state?.artTitle || "Untitled";
   const userName = localStorage.getItem("userName") || "Unknown";
   const CELLS = 4560;
+  const [artId, setArtId] = useState( location.state?._id || null);
+  const {messages, sendMessage: sendChatMessage, connectionStatus,} = useArtworkChat({artId,userName,});
 
   const [selectedColor, setSelectedColor] = useState("black");
-  const [messages, setMessages] = useState([
-    { name: "System", message: "Welcome to Lines of Light!" },
-  ]);
   const [inputMessage, setInputMessage] = useState("");
 
   const colors = [  // Neutrals
@@ -126,19 +127,10 @@ export function Draw() {
   }, [messages]);
 
   const sendMessage = () => {
-    const text = inputMessage.trim();
-
-    if (!text) return;
-
-    setMessages((prev) => [
-      ...prev,
-      {
-        name: "Me",
-        message: text,
-      },
-    ]);
-
-    setInputMessage("");
+    const wasSent = sendChatMessage(inputMessage);
+    if (wasSent) {
+      setInputMessage('');
+    }
   };
 
 
@@ -195,6 +187,9 @@ export function Draw() {
             throw new Error("Failed to save artwork");
           }
 
+          const savedResult = await response.json();
+          setArtId(savedResult.artwork._id);
+
           alert("Artwork saved!");
         } catch (error) {
           console.error("Error saving artwork:", error);
@@ -205,21 +200,21 @@ export function Draw() {
 
 
   // Temporary fake WebSocket messages--------------------------------------------------------
-useEffect(() => {
-  const interval = setInterval(() => {
-    const userNameWS = `User-${Math.floor(Math.random() * 1000)}`;
+// useEffect(() => {
+//   const interval = setInterval(() => {
+//     const userNameWS = `User-${Math.floor(Math.random() * 1000)}`;
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        name: userNameWS,
-        message: "Hello",
-      },
-    ]);
-  }, 1000);
+//     setMessages((prev) => [
+//       ...prev,
+//       {
+//         name: userNameWS,
+//         message: "Hello",
+//       },
+//     ]);
+//   }, 1000);
 
-  return () => clearInterval(interval);
-}, []);
+//   return () => clearInterval(interval);
+// }, []);
 // ---------------------------------------------------------------------------------------
   return (
     <main className="container-fluid layout">
@@ -267,20 +262,32 @@ useEffect(() => {
         </div>
 
         <div className="sender">
-          <input
+         <input
             type="text"
-            placeholder="Message..."
+            placeholder={
+              !artId
+                ? 'Save the artwork to start chatting'
+                : connectionStatus === 'connected'
+                  ? 'Message...'
+                  : connectionStatus === 'connecting'
+                    ? 'Connecting...'
+                    : connectionStatus === 'error'
+                      ? 'Chat connection failed'
+                      : 'Chat disconnected'
+            }
+            disabled={!artId || connectionStatus !== 'connected'}
             value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
+            onChange={(event) => setInputMessage(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
                 sendMessage();
               }
             }}
-            
           />
 
-          <button onClick={sendMessage}>Send</button>
+         <button type="button" onClick={sendMessage} disabled={!artId || connectionStatus !== "connected"}>
+            Send
+          </button>
         </div>
         
 
@@ -288,4 +295,5 @@ useEffect(() => {
       
     </main>
   );
+
 }

@@ -1,11 +1,16 @@
+const { WebSocketServer, WebSocket } = require('ws');
+
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
-const authCookieName = 'token'; 
 const DB = require('./database.js');
+// const userCollection = db.collection('user');
+// const artPortfolio = db.collection('portfolio');
+// const chatCollection = db.collection('chat');
 
+const authCookieName = 'token';
 
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -81,22 +86,24 @@ apiRouter.get('/navigation', verifyAuth, async (req, res) => {
 
 
 
-apiRouter.post('/art', async (req, res) => {
+apiRouter.post('/art', verifyAuth, async (req, res) => {
   try {
     const { userName, title, artCsv } = req.body;
 
-    await DB.addArt({
+    const artwork = await DB.addArt({
       userName,
       title,
       artCsv,
     });
 
-    res.status(201).send({ message: 'Artwork saved' });
+    res.status(201).send({
+      message: 'Artwork saved',
+      artwork,
+    });
   } catch (error) {
     console.error('Error saving artwork:', error);
-    res.status(500).send({ 
+    res.status(500).send({
       msg: 'Failed to save artwork',
-      error: error.message
     });
   }
 });
@@ -113,6 +120,23 @@ apiRouter.get('/portfolio/all', verifyAuth, async (req, res) => {
   }
 });
 
+
+apiRouter.get(
+  '/art/:artId/messages',
+  verifyAuth,
+  async (req, res) => {
+    try {
+      const messages =
+        await DB.getChatMessages(req.params.artId);
+
+      res.send(messages);
+    } catch (error) {
+      res.status(500).send({
+        msg: 'Failed to load chat history',
+      });
+    }
+  }
+);
 
 
 
@@ -163,5 +187,111 @@ function setAuthCookie(res, authToken) {
 
 const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
+});
+
+const wss = new WebSocketServer({
+  server: httpService,
+  path: '/ws',
+});
+
+
+
+
+const chatRooms = new Map();
+
+function addClientToRoom(artId, socket) {
+  if (!chatRooms.has(artId)) {
+    chatRooms.set(artId, new Set());
+  }
+
+  chatRooms.get(artId).add(socket);
+  socket.artId = artId;
+}
+
+function removeClientFromRoom(socket) {
+  const artId = socket.artId;
+
+  if (!artId || !chatRooms.has(artId)) {
+    return;
+  }
+
+  const room = chatRooms.get(artId);
+  room.delete(socket);
+
+  if (room.size === 0) {
+    chatRooms.delete(artId);
+  }
+}
+
+function broadcastToRoom(artId, payload) {
+  const room = chatRooms.get(artId);
+
+  if (!room) {
+    return;
+  }
+
+  const serializedMessage = JSON.stringify(payload);
+
+  for (const client of room) {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(serializedMessage);
+    }
+  }
+}
+
+wss.on('connection', (socket) => {
+  socket.on('message', async (rawMessage) => {
+    try {
+      const event = JSON.parse(rawMessage.toString());
+
+      if (event.type === 'join') {
+        removeClientFromRoom(socket);
+        addClientToRoom(event.artId, socket);
+        return;
+      }
+
+      if (event.type === 'chat') {
+        if (!socket.artId || socket.artId !== event.artId) {
+          return;
+        }
+
+        const text = event.message?.trim();
+
+        if (!text) {
+          return;
+        }
+
+        const sentAt = new Date().toISOString();
+        const name = event.name || 'Unknown';
+        const message = text.slice(0, 500);
+
+        await DB.addChatMessage({
+          artId: event.artId,
+          userName: name,
+          message,
+          sentAt,
+        });
+
+        broadcastToRoom(event.artId, {
+          type: 'chat',
+          artId: event.artId,
+          name,
+          message,
+          sentAt,
+        });
+
+      }
+    } catch (error) {
+      console.error('Invalid WebSocket message:', error);
+    }
+  });
+
+  socket.on('close', () => {
+    removeClientFromRoom(socket);
+  });
+
+  socket.on('error', () => {
+    removeClientFromRoom(socket);
+  });
 });
 

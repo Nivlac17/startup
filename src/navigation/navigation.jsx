@@ -12,11 +12,12 @@ export function Navigation() {
 
   const viewArt = (art) => {
     navigate("/watch", {
-      state: {
-        userName: art.userName,
-        title: art.title,
-        artCsv: art.artCsv,
-      },
+      state: art,
+      // {
+      //   userName: art.userName,
+      //   title: art.title,
+      //   artCsv: art.artCsv,
+      // },
     });
   };
 

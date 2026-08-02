@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useArtworkChat } from './useArtworkChat';
 import "./draw.css";
 
 export function Watch() {
@@ -11,17 +12,14 @@ export function Watch() {
 
   const CELLS = 4560;
 
-  const [messages, setMessages] = useState([
-    {
-      name: "System",
-      message: "Welcome to Lines of Light!",
-    },
-  ]);
-
-  const [inputMessage, setInputMessage] = useState("");
 
   const artwork = location.state || {};
-  const { userName, title, artCsv } = artwork;
+  const { _id: artId, userName: artistName, title, artCsv,} = artwork;
+  
+  const currentUserName = localStorage.getItem('userName') || 'Unknown';
+  const { messages, sendMessage: sendChatMessage, connectionStatus,} = useArtworkChat({ artId, userName: currentUserName,});
+  const [inputMessage, setInputMessage] = useState('');
+
 
   // Convert the saved CSV string into an array of cell colors.
   const parseArtCsv = (csv) => {
@@ -73,21 +71,33 @@ export function Watch() {
     }
   }, [messages]);
 
-  const sendMessage = () => {
-    const text = inputMessage.trim();
-    if (!text) {
-      return;
-    }
-    setMessages((previousMessages) => [
-      ...previousMessages,
-      {
-        name: "Me",
-        message: text,
-      },
-    ]);
+  // const sendMessage = () => {
+  //   const text = inputMessage.trim();
+  //   if (!text) {
+  //     return;
+  //   }
+  //   setMessages((previousMessages) => [
+  //     ...previousMessages,
+  //     {
+  //       name: "Me",
+  //       message: text,
+  //     },
+  //   ]);
 
-    setInputMessage("");
-  };
+  //   setInputMessage("");
+  // };
+
+
+
+  const sendMessage = () => {
+  const wasSent = sendChatMessage(inputMessage);
+
+  if (wasSent) {
+    setInputMessage('');
+  }
+};
+
+
 
   // Handle refreshing or directly opening /watch.
   if (!title && !artCsv) {
@@ -115,8 +125,8 @@ export function Watch() {
 
             <p>
               Created by{" "}
-              {userName
-                ? userName.split("@")[0]
+              {artistName
+                ? artistName.split("@")[0]
                 : "Unknown artist"}
             </p>
           </div>
@@ -150,7 +160,7 @@ export function Watch() {
         </div>
 
         <div className="sender">
-          <input
+          {/* <input
             type="text"
             placeholder="Message..."
             value={inputMessage}
@@ -167,7 +177,30 @@ export function Watch() {
 
           <button type="button" onClick={sendMessage}>
             Send
-          </button>
+          </button> */}
+
+          <input
+                type="text"
+                placeholder={
+                  connectionStatus === 'connected'
+                    ? 'Message...'
+                    : 'Connecting...'
+                }
+                value={inputMessage}
+                disabled={connectionStatus !== 'connected'}
+                onChange={(event) => setInputMessage(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    sendMessage();
+                  }
+                }}
+              />
+
+              <button type="button" onClick={sendMessage} disabled={connectionStatus !== 'connected'}>
+                Send
+              </button>
+
+
         </div>
       </aside>
     </main>

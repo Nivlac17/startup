@@ -4,10 +4,13 @@ const config = require('./dbConfig.json');
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('startup');
+
 const userCollection = db.collection('user');
 const artPortfolio = db.collection('portfolio');
+const chatCollection = db.collection('chat');
 
-// Check this message for local dev logging
+
+
 (async function testConnection() {
   try {
     await db.command({ ping: 1 });
@@ -35,7 +38,7 @@ async function updateUser(user) {
 }
 
 async function addArt({ userName, title, artCsv }) {
-  return artPortfolio.updateOne(
+  await artPortfolio.updateOne(
     { userName, title },
     {
       $set: {
@@ -48,6 +51,8 @@ async function addArt({ userName, title, artCsv }) {
     },
     { upsert: true }
   );
+
+  return artPortfolio.findOne({ userName, title });
 }
 
 
@@ -65,6 +70,38 @@ async function getAllArt() {
 
 
 
+async function addChatMessage({
+  artId,
+  userName,
+  message,
+  sentAt,
+}) {
+  const chatMessage = {
+    artId,
+    userName,
+    message,
+    sentAt,
+  };
+
+  const result = await chatCollection.insertOne(chatMessage);
+
+  return {
+    ...chatMessage,
+    _id: result.insertedId,
+  };
+}
+
+function getChatMessages(artId) {
+  return chatCollection
+    .find({ artId })
+    .sort({ sentAt: 1 })
+    .limit(100)
+    .toArray();
+}
+
+
+
+
 module.exports = {
   getUser,
   getUserByToken,
@@ -74,4 +111,9 @@ module.exports = {
   getArtByUser,
   getArtByUserAndTitle,
   getAllArt,
+  addChatMessage,
+  getChatMessages,
 };
+
+
+
