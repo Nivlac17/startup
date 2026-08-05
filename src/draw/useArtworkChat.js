@@ -15,7 +15,63 @@ export function useArtworkChat({ artId, userName }) {
 
 
 
-    async function loadHistory() {
+  // async function loadHistory() {
+  //   try {
+  //     const response = await fetch(
+  //       `/api/art/${encodeURIComponent(artId)}/messages`
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error(
+  //         `Chat history request failed (${response.status})`
+  //       );
+  //     }
+
+  //     const history = await response.json();
+
+  //     setMessages([
+  //       {
+  //         name: 'System',
+  //         message: 'Welcome to Lines of Light!',
+  //       },
+  //       ...history.map((item) => ({
+  //         ...item,
+  //         name: item.name || item.userName || 'Unknown',
+  //       })),
+  //     ]);
+  //   } catch (error) {
+  //     console.error('Could not load chat history:', error);
+  //   }
+  // }
+
+            // loadHistory();
+  
+// ---------------------------
+
+  useEffect(() => {
+
+    if (!artId) {
+      setConnectionStatus('missing-artwork');
+      return;
+    }
+
+    const protocol =
+      window.location.protocol === 'https:' ? 'wss' : 'ws';
+
+    const socket = new WebSocket(
+      `${protocol}://${window.location.host}/ws`
+    );
+
+    socketRef.current = socket;
+
+    socket.addEventListener('open', () => {
+      setConnectionStatus('connected');
+
+
+
+
+
+      async function loadHistory() {
     try {
       const response = await fetch(
         `/api/art/${encodeURIComponent(artId)}/messages`
@@ -44,27 +100,12 @@ export function useArtworkChat({ artId, userName }) {
     }
   }
 
-  loadHistory();
+
+
+loadHistory();
 
 
 
-  useEffect(() => {
-    if (!artId) {
-      setConnectionStatus('missing-artwork');
-      return;
-    }
-
-    const protocol =
-      window.location.protocol === 'https:' ? 'wss' : 'ws';
-
-    const socket = new WebSocket(
-      `${protocol}://${window.location.host}/ws`
-    );
-
-    socketRef.current = socket;
-
-    socket.addEventListener('open', () => {
-      setConnectionStatus('connected');
 
       socket.send(
         JSON.stringify({
@@ -72,6 +113,7 @@ export function useArtworkChat({ artId, userName }) {
           artId,
         })
       );
+
     });
 
     socket.addEventListener('message', (event) => {
@@ -90,7 +132,7 @@ export function useArtworkChat({ artId, userName }) {
       } catch (error) {
         console.error('Invalid chat response:', error);
       }
-    });
+  });
 
     socket.addEventListener('close', (event) => {
       console.error('WebSocket closed', {
