@@ -15,36 +15,36 @@ export function useArtworkChat({ artId, userName }) {
 
 
 
-  //   async function loadHistory() {
-  //   try {
-  //     const response = await fetch(
-  //       `/api/art/${encodeURIComponent(artId)}/messages`
-  //     );
+    async function loadHistory() {
+    try {
+      const response = await fetch(
+        `/api/art/${encodeURIComponent(artId)}/messages`
+      );
 
-  //     if (!response.ok) {
-  //       throw new Error(
-  //         `Chat history request failed (${response.status})`
-  //       );
-  //     }
+      if (!response.ok) {
+        throw new Error(
+          `Chat history request failed (${response.status})`
+        );
+      }
 
-  //     const history = await response.json();
+      const history = await response.json();
 
-  //     setMessages([
-  //       {
-  //         name: 'System',
-  //         message: 'Welcome to Lines of Light!',
-  //       },
-  //       ...history.map((item) => ({
-  //         ...item,
-  //         name: item.name || item.userName || 'Unknown',
-  //       })),
-  //     ]);
-  //   } catch (error) {
-  //     console.error('Could not load chat history:', error);
-  //   }
-  // }
+      setMessages([
+        {
+          name: 'System',
+          message: 'Welcome to Lines of Light!',
+        },
+        ...history.map((item) => ({
+          ...item,
+          name: item.name || item.userName || 'Unknown',
+        })),
+      ]);
+    } catch (error) {
+      console.error('Could not load chat history:', error);
+    }
+  }
 
-  // loadHistory();
+  loadHistory();
 
 
 
