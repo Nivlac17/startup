@@ -82,9 +82,7 @@ export function Navigation() {
       <h2>Select an art piece or draw new art!</h2>
 
       {loading && <p>Loading artwork... "I'm quite ready for another adventure!"</p>}
-
       {error && <p className="navigation-error">{error}</p>}
-
       {!loading && !error && portfolio.length === 0 && (
         <p>Congrats! You are the first artist on this server!</p>
       )}

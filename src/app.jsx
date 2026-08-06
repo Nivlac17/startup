@@ -47,8 +47,6 @@ export default function App() {
                             </NavLink>
                         </li>
                         )}
-
-
     
                         <li className="nav-item">
                             <NavLink className="nav-link" to="quote">
