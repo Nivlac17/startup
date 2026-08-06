@@ -157,9 +157,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **Backend listens for WebSocket connection** - I completed this, the backed listens for users to open an art piece or click save to allow websocket messaging.
+- [x] **Frontend makes WebSocket connection** - The frontend connects to a websocket as soon as a piece of artwork is saved.
+- [x] **Data sent over WebSocket connection** - Chats are distributed using a websocket and history is made available as soon as you select a picture.
+- [x] **WebSocket data displayed** - Chats and chathistory are displayed when drawing or viewing a picture.
+- [x] **Application is fully functional** - This has been completed!
