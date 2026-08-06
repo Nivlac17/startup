@@ -103,9 +103,6 @@ loadHistory();
         wasClean: event.wasClean,
       });
 
-      if (!cancelled) {
-        setConnectionStatus('disconnected');
-      }
     });
 
     socket.addEventListener('error', (error) => {
