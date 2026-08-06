@@ -21,10 +21,13 @@ export function Draw() {
 
   const colors = [  // Neutrals
   "black",
-  "whitesmoke",
+  "ivory",
+  "snow",
   "silver",
   "grey",
   "brown",
+  "sienna",
+  "chocolate",
   // Reds / Pinks
   "red",
   "crimson",
@@ -70,7 +73,6 @@ export function Draw() {
   useEffect(() => {
     const grid = gridRef.current;
     if (!grid) return;
-
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < CELLS; i++) {
@@ -86,7 +88,6 @@ export function Draw() {
   useEffect(() => {
     const grid = gridRef.current;
     if (!grid) return;
-
     const paint = (event) => {
       if (event.target.classList.contains("c")) {
         event.target.style.backgroundColor = selectedColor;
@@ -134,88 +135,65 @@ export function Draw() {
   };
 
 
-    const saveArt = async () => {
-        const cells = gridRef.current.querySelectorAll(".c");
+  const saveArt = async () => {
+      const cells = gridRef.current.querySelectorAll(".c");
 
-        const colors = Array.from(cells).map(
-          (cell) => cell.style.backgroundColor || "white"
-        );
+      const colors = Array.from(cells).map(
+        (cell) => cell.style.backgroundColor || "white"
+      );
 
-        const columns = 80;
-        const rows = [];
+      const columns = 80;
+      const rows = [];
 
-        for (let i = 0; i < colors.length; i += columns) {
-          rows.push(colors.slice(i, i + columns).join(","));
-        }
+      for (let i = 0; i < colors.length; i += columns) {
+        rows.push(colors.slice(i, i + columns).join(","));
+      }
 
-        const artCsv = rows.join("\n");
+      const artCsv = rows.join("\n");
 
-        try {
-          let title = artTitle;
-
-          // Ask for a name if the artwork is currently untitled
-          if (title === "Untitled") {
-            const newTitle = window.prompt("What would you like to name your artwork?");
-
-            // User clicked Cancel
-            if (newTitle === null) {
-              return;
-            }
-
-            // Don't allow an empty name
-            if (newTitle.trim() === "") {
-              alert("Please enter a name for your artwork.");
-              return;
-            }
-
-            title = newTitle.trim();
+      try {
+        let title = artTitle;
+        if (title === "Untitled") {
+          const newTitle = window.prompt("What would you like to name your artwork?");
+          // User clicked Cancel
+          if (newTitle === null) {
+            return;
+          }
+          // Don't allow an empty name
+          if (newTitle.trim() === "") {
+            alert("Please enter a name for your artwork.");
+            return;
           }
 
-          const response = await fetch("/api/art", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              userName,
-              title: title,
-              artCsv: artCsv,
-            }),
-          });
-
-          if (!response.ok) {
-            throw new Error("Failed to save artwork");
-          }
-
-          const savedResult = await response.json();
-          setArtId(savedResult.artwork._id);
-
-          alert("Artwork saved!");
-        } catch (error) {
-          console.error("Error saving artwork:", error);
-          alert("Could not save artwork.");
+          title = newTitle.trim();
         }
-      };
+
+        const response = await fetch("/api/art", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userName,
+            title: title,
+            artCsv: artCsv,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to save artwork");
+        }
+
+        const savedResult = await response.json();
+        setArtId(savedResult.artwork._id);
+        alert("Artwork saved!");
+      } catch (error) {
+        console.error("Error saving artwork:", error);
+        alert("Could not save artwork.");
+      }
+  };
 
 
-
-  // Temporary fake WebSocket messages--------------------------------------------------------
-// useEffect(() => {
-//   const interval = setInterval(() => {
-//     const userNameWS = `User-${Math.floor(Math.random() * 1000)}`;
-
-//     setMessages((prev) => [
-//       ...prev,
-//       {
-//         name: userNameWS,
-//         message: "Hello",
-//       },
-//     ]);
-//   }, 1000);
-
-//   return () => clearInterval(interval);
-// }, []);
-// ---------------------------------------------------------------------------------------
   return (
     <main className="container-fluid layout">
       {/* Color Palette */}
@@ -233,15 +211,6 @@ export function Draw() {
             />
           ))}
         </div>
-
-        {/* <div className="current-color">
-          <p>Current Color</p>
-          <div
-            className="color-preview"
-            style={{ backgroundColor: selectedColor }}
-          />
-        </div> */}
-
       </aside>
 
 
@@ -290,9 +259,7 @@ export function Draw() {
           </button>
         </div>
         
-
       </aside>
-      
     </main>
   );
 

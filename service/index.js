@@ -89,7 +89,6 @@ apiRouter.get('/navigation', verifyAuth, async (req, res) => {
 apiRouter.post('/art', verifyAuth, async (req, res) => {
   try {
     const { userName, title, artCsv } = req.body;
-
     const artwork = await DB.addArt({
       userName,
       title,
@@ -126,9 +125,7 @@ apiRouter.get(
   verifyAuth,
   async (req, res) => {
     try {
-      const messages =
-        await DB.getChatMessages(req.params.artId);
-
+      const messages = await DB.getChatMessages(req.params.artId);
       res.send(messages);
     } catch (error) {
       res.status(500).send({
@@ -154,20 +151,17 @@ app.use((_req, res) => {
 
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
-
   const user = {
     email: email,
     password: passwordHash,
     token: uuid.v4(),
   };
   await DB.addUser(user);
-
   return user;
 }
 
 async function findUser(field, value) {
   if (!value) return null;
-
   if (field === 'token') {
     return DB.getUserByToken(value);
   }
@@ -189,12 +183,15 @@ const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
+
+
+// Websocket Section
+
+
 const wss = new WebSocketServer({
   server: httpService,
   path: '/ws',
 });
-
-
 
 
 const chatRooms = new Map();

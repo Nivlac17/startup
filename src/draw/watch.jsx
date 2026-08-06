@@ -71,22 +71,6 @@ export function Watch() {
     }
   }, [messages]);
 
-  // const sendMessage = () => {
-  //   const text = inputMessage.trim();
-  //   if (!text) {
-  //     return;
-  //   }
-  //   setMessages((previousMessages) => [
-  //     ...previousMessages,
-  //     {
-  //       name: "Me",
-  //       message: text,
-  //     },
-  //   ]);
-
-  //   setInputMessage("");
-  // };
-
 
 
   const sendMessage = () => {
@@ -160,25 +144,6 @@ export function Watch() {
         </div>
 
         <div className="sender">
-          {/* <input
-            type="text"
-            placeholder="Message..."
-            value={inputMessage}
-            onChange={(event) =>
-              setInputMessage(event.target.value)
-            }
-            onKeyDown={(event) => {
-              if (event.key === "Enter") {
-                sendMessage();
-              }
-            }}
-            aria-label="Chat message"
-          />
-
-          <button type="button" onClick={sendMessage}>
-            Send
-          </button> */}
-
           <input
                 type="text"
                 placeholder={
