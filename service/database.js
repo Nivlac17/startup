@@ -76,19 +76,19 @@ async function addChatMessage({
   message,
   sentAt,
 }) {
-  const chatMessage = {
-    artId,
-    userName,
-    message,
-    sentAt,
-  };
+    const chatMessage = {
+        artId,
+        userName,
+        message,
+        sentAt,
+    };
 
-  const result = await chatCollection.insertOne(chatMessage);
+    const result = await chatCollection.insertOne(chatMessage);
 
-  return {
-    ...chatMessage,
-    _id: result.insertedId,
-  };
+    return {
+        ...chatMessage,
+        _id: result.insertedId,
+    };
 }
 
 function getChatMessages(artId) {
@@ -98,7 +98,6 @@ function getChatMessages(artId) {
     .limit(100)
     .toArray();
 }
-
 
 
 

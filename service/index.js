@@ -6,13 +6,8 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const DB = require('./database.js');
-// const userCollection = db.collection('user');
-// const artPortfolio = db.collection('portfolio');
-// const chatCollection = db.collection('chat');
 
 const authCookieName = 'token';
-
-
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 // JSON body parsing using built-in middleware
 app.use(express.json());
